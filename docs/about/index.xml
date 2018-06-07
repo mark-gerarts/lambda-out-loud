@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>About on Lambda Out Loud</title>
-    <link>mark-gerarts.github.io/lambda-out-loud/about/</link>
+    <link>http://www.lambda-out-loud.com/about/</link>
     <description>Recent content in About on Lambda Out Loud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 06 Jun 2018 18:58:01 +0200</lastBuildDate>
     
-	<atom:link href="mark-gerarts.github.io/lambda-out-loud/about/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.lambda-out-loud.com/about/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

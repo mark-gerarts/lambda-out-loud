@@ -1,5 +1,5 @@
 # Site settings
-baseurl: "mark-gerarts.github.io/lambda-out-loud"
+baseurl: "http://www.lambda-out-loud.com"
 
 # Github pages
 publishDir: docs

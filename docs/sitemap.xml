@@ -3,52 +3,52 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>mark-gerarts.github.io/lambda-out-loud/about/</loc>
+    <loc>http://www.lambda-out-loud.com/about/</loc>
     <lastmod>2018-06-06T18:58:01+02:00</lastmod>
   </url>
   
   <url>
-    <loc>mark-gerarts.github.io/lambda-out-loud/posts/clos-introduction/</loc>
+    <loc>http://www.lambda-out-loud.com/posts/clos-introduction/</loc>
     <lastmod>2018-06-06T18:58:01+02:00</lastmod>
   </url>
   
   <url>
-    <loc>mark-gerarts.github.io/lambda-out-loud/categories/</loc>
+    <loc>http://www.lambda-out-loud.com/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>mark-gerarts.github.io/lambda-out-loud/tags/clos/</loc>
-    <lastmod>2018-06-06T18:58:01+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>mark-gerarts.github.io/lambda-out-loud/</loc>
+    <loc>http://www.lambda-out-loud.com/tags/clos/</loc>
     <lastmod>2018-06-06T18:58:01+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>mark-gerarts.github.io/lambda-out-loud/tags/lisp/</loc>
+    <loc>http://www.lambda-out-loud.com/</loc>
     <lastmod>2018-06-06T18:58:01+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>mark-gerarts.github.io/lambda-out-loud/posts/</loc>
+    <loc>http://www.lambda-out-loud.com/tags/lisp/</loc>
     <lastmod>2018-06-06T18:58:01+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>mark-gerarts.github.io/lambda-out-loud/tags/</loc>
+    <loc>http://www.lambda-out-loud.com/posts/</loc>
     <lastmod>2018-06-06T18:58:01+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>mark-gerarts.github.io/lambda-out-loud/categories/tutorials/</loc>
+    <loc>http://www.lambda-out-loud.com/tags/</loc>
+    <lastmod>2018-06-06T18:58:01+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.lambda-out-loud.com/categories/tutorials/</loc>
     <lastmod>2018-06-06T18:58:01+02:00</lastmod>
     <priority>0</priority>
   </url>

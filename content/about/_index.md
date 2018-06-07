@@ -19,4 +19,4 @@ this blog, I prefer functional languages.
 ## Contributing
 As a huge fan of open source software, this blog is open source as well. If you
 spot any typos, have any suggestions, or if you want to improve a post, feel
-free to [open an issue](#) or [pull request](#).
+free to [open an issue or pull request](https://github.com/mark-gerarts/lambda-out-loud).
