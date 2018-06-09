@@ -17,9 +17,10 @@
       <pubDate>Sat, 09 Jun 2018 19:41:36 +0200</pubDate>
       
       <guid>https://www.lambda-out-loud.com/posts/accessing-private-properties-php/</guid>
-      <description>Private properties can only be accessed by the class that defines the property&amp;hellip; right? Actually, PHP has a few ways to circumvent this: reflection, closures and array casting.
-Reflection: slow, but clean PHP provides a reflection API to retrieve metadata of classes, methods, interfaces, and so on. Of special interest to us is the ReflectionProperty class. Among other things, it has the wonderful method setAccesible.
-In our code samples, we&amp;rsquo;re going to try to retrieve and change the property $property of the following class:</description>
+      <description>&lt;p&gt;Private properties can only be accessed by the class that defines the
+property&amp;hellip; right? Actually, PHP has a few ways to circumvent this: reflection,
+closures and array casting.
+&lt;/p&gt;</description>
     </item>
     
   </channel>

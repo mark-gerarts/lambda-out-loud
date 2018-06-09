@@ -9,6 +9,7 @@ description: 'Finding a way around property visibility'
 Private properties can only be accessed by the class that defines the
 property... right? Actually, PHP has a few ways to circumvent this: reflection,
 closures and array casting.
+<!--more-->
 
 ## Reflection: slow, but clean
 PHP provides a [reflection API][reflection-php] to retrieve metadata of classes,
