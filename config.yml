@@ -1,6 +1,8 @@
 # Site settings
 baseurl: "https://www.lambda-out-loud.com"
 
+enableRobotsTXT: true
+
 # Github pages
 publishDir: docs
 
