@@ -723,3 +723,7 @@ code.language-text {
 	background: #f1f9f1;
 	color: #3d8b3d;
 }
+
+pre code {
+    padding: 0;
+}
