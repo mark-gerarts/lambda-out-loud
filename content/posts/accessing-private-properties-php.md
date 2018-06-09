@@ -1,6 +1,6 @@
 ---
 title: "Accessing private properties in PHP"
-date: 2018-06-09T22:41:36+02:00
+date: 2018-06-09T19:41:36+02:00
 tags:
     - php
 description: 'Finding a way around property visibility'
