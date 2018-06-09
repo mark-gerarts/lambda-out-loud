@@ -184,11 +184,12 @@ ul, ol 	{
     margin:0;
     padding:0;
     margin-bottom: 20px;
-    padding-left: 24px;
 }
 ul { list-style-type:circle; }
 ol { list-style: decimal; }
-
+.post ul, .post ol {
+    padding-left: 24px;
+}
 /* Line Height */
 #post-body, p { line-height:1.7; }
 
@@ -653,6 +654,14 @@ h2.month {
 	.post h2.headline { font-size: 13px; }
 	.post h1 { font-size:24px; }
 	.post h2 { font-size:20px; }
+}
+
+@media screen and (max-width: 430px) {
+    #sharing {
+        float: left;
+        margin-top: 26px;
+        clear: right;
+    }
 }
 
 
