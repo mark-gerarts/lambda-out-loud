@@ -4,12 +4,15 @@ date: 2018-06-09T19:41:36+02:00
 tags:
     - php
 description: 'Finding a way around property visibility'
+summary: >
+    Private properties can only be accessed by the class that defines the
+    property... right? Actually, PHP has a few ways to circumvent this: reflection,
+    closures and array casting.
 ---
 
 Private properties can only be accessed by the class that defines the
 property... right? Actually, PHP has a few ways to circumvent this: reflection,
 closures and array casting.
-<!--more-->
 
 ## Reflection: slow, but clean
 PHP provides a [reflection API][reflection-php] to retrieve metadata of classes,
@@ -39,7 +42,6 @@ class MyClass
         $this->property = $property;
     }
 }
-
 ```
 
 Using reflection, we can access the property using a clean API. Both reading the
@@ -151,6 +153,8 @@ has been created to ensure it doesn't get changed. Knowing this, we can create
 a way to access any property we want.
 
 ```php
+<?php
+
 function get_property(object $object, string $property) {
     $array = (array) $object;
     $propertyLength = strlen($property);

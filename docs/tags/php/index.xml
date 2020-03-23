@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Php on Lambda Out Loud</title>
+    <title>php on Lambda Out Loud</title>
     <link>https://www.lambda-out-loud.com/tags/php/</link>
-    <description>Recent content in Php on Lambda Out Loud</description>
+    <description>Recent content in php on Lambda Out Loud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 09 Jun 2018 19:41:36 +0200</lastBuildDate>
@@ -17,10 +17,7 @@
       <pubDate>Sat, 09 Jun 2018 19:41:36 +0200</pubDate>
       
       <guid>https://www.lambda-out-loud.com/posts/accessing-private-properties-php/</guid>
-      <description>&lt;p&gt;Private properties can only be accessed by the class that defines the
-property&amp;hellip; right? Actually, PHP has a few ways to circumvent this: reflection,
-closures and array casting.
-&lt;/p&gt;</description>
+      <description>Private properties can only be accessed by the class that defines the property&amp;hellip; right? Actually, PHP has a few ways to circumvent this: reflection, closures and array casting.</description>
     </item>
     
   </channel>

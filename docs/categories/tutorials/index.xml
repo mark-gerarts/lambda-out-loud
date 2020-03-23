@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tutorials on Lambda Out Loud</title>
+    <title>tutorials on Lambda Out Loud</title>
     <link>https://www.lambda-out-loud.com/categories/tutorials/</link>
-    <description>Recent content in Tutorials on Lambda Out Loud</description>
+    <description>Recent content in tutorials on Lambda Out Loud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 06 Jun 2018 18:58:01 +0200</lastBuildDate>
@@ -17,10 +17,7 @@
       <pubDate>Wed, 06 Jun 2018 18:58:01 +0200</pubDate>
       
       <guid>https://www.lambda-out-loud.com/posts/clos-introduction/</guid>
-      <description>&lt;p&gt;If you&amp;rsquo;re coming from the more mainstream OO languages, the Common Lisp Object
-System (&lt;em&gt;CLOS&lt;/em&gt;) might seem a bit alien. This introduction is intended to get
-you up to speed with the basic principles of object orientation in Lisp.
-&lt;/p&gt;</description>
+      <description>If you&amp;rsquo;re coming from the more mainstream OO languages, the Common Lisp Object System (&lt;em&gt;CLOS&lt;/em&gt;) might seem a bit alien. This introduction is intended to get you up to speed with the basic principles of object orientation in Lisp.</description>
     </item>
     
   </channel>

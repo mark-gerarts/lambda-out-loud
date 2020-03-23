@@ -7,12 +7,15 @@ tags:
     - lisp
     - clos
 description: 'An introduction to the Common Lisp Object System'
+summary: >
+  If you're coming from the more mainstream OO languages, the Common Lisp Object
+  System (*CLOS*) might seem a bit alien. This introduction is intended to get
+  you up to speed with the basic principles of object orientation in Lisp.
 ---
 
 If you're coming from the more mainstream OO languages, the Common Lisp Object
 System (*CLOS*) might seem a bit alien. This introduction is intended to get
 you up to speed with the basic principles of object orientation in Lisp.
-<!--more-->
 
 ## Object structure
 
@@ -121,16 +124,12 @@ CL-USER> (hitpoints *p*)
 ```
 
 
-{{% notice %}}
 Slot values can be retrieved using `slot-value` as well. It is, however,
 considered best practice to define an accessor instead.
-{{% /notice %}}
 
-{{% notice %}}
 CLOS doesn't provide encapsulation; slots cannot be defined as protected or
 private. Instead, the programmer decides which accessors are exported in the
 package definition. Keep in mind that `slot-value` could still be used.
-{{% /notice %}}
 
 Some people like to wrap `make-instance` to define a constructor of some sorts.
 This allows you to define required parameters. This is just a side note however,
@@ -181,10 +180,8 @@ CL-USER> (receive-damage *p* 10)
 80
 ```
 
-{{% notice %}}
 `defgeneric` is optional. When a `defmethod` is encountered for which a
 generic doesn't exist yet, it will be created implicitly.
-{{% /notice %}}
 
 Methods look a lot like regular functions. The big difference between the two is
 that methods specialize their behaviour based on their arguments. This means
@@ -230,7 +227,7 @@ as well. Let's say we will allow our players to be a mighty `Wizard`:
 This wizard class now inherits all slots of the parent class. Methods applying
 to player objects will work for wizards as well. Let's see it in action:
 
-```lisp
+```txt
 CL-USER> (defvar *w* (make-instance 'wizard :name "Gandalf"))
 #<WIZARD {100297CD03}>
 

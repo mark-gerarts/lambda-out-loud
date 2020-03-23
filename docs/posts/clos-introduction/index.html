@@ -1,178 +1,134 @@
 <!DOCTYPE html>
-<html lang="en-us">
-	<head>
-    <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="author" content="Lambda Out Loud">
-<meta name="description" content="A blog about all things code">
-<meta name="generator" content="Hugo 0.41" />
-<title>Classes in Lisp: an introduction to CLOS</title>
-<link rel="shortcut icon" href="https://www.lambda-out-loud.com/images/favicon.ico">
-<link rel="stylesheet" href="https://www.lambda-out-loud.com/css/style.css">
-<link rel="stylesheet" href="https://www.lambda-out-loud.com/css/highlight.css">
+<html>
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+    
+    <title>
+      
+      Classes in Lisp: an introduction to CLOS - Lambda Out Loud
+      
+		</title>
 
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" type="text/css" href="/assets/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Lato:100,100i,300,300i,400,400i,700,700i|Source+Code+Pro:300,400,500,700" rel="stylesheet">
+    
 
+    
+    
 
+    <script>
+      var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      if (dnt != "1" && dnt != "yes") {
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                                   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-99354109-1', 'auto');
+          ga('set', 'anonymizeIp', true);
+          ga('send', 'pageview');
+      } else {
+          console.debug("Respecting Do-Not-Track, not loading analytics.");
+      }
+     </script>
+</head>
 
-<link href="https://www.lambda-out-loud.com/index.xml" rel="alternate" type="application/rss+xml" title="Lambda Out Loud" />
+    <body class="post-template">
+        <header class="main-header">
+	<div class="main-header-content">
+		<a href="/" alt="site-logo">
+			<img src="/static/img/lambda.png">
+		</a>
+		<h2 class="blog-description">A blog about all things code</h2>
+	</div>
 
+	<div class="nav">
+    
+		
+      <a class="nav- " role="presentation" href="/posts/">Posts</a>
+		
+      <a class="nav- " role="presentation" href="/creative-code/">Creative code</a>
+		
+	</div>
+</header>
 
-<meta property="og:title" content="Classes in Lisp: an introduction to CLOS" />
-<meta property="og:description" content="An introduction to the Common Lisp Object System" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.lambda-out-loud.com/posts/clos-introduction/" />
-
-
-
-<meta property="article:published_time" content="2018-06-06T18:58:01&#43;02:00"/>
-
-<meta property="article:modified_time" content="2018-06-06T18:58:01&#43;02:00"/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<meta itemprop="name" content="Classes in Lisp: an introduction to CLOS">
-<meta itemprop="description" content="An introduction to the Common Lisp Object System">
-
-
-<meta itemprop="datePublished" content="2018-06-06T18:58:01&#43;02:00" />
-<meta itemprop="dateModified" content="2018-06-06T18:58:01&#43;02:00" />
-<meta itemprop="wordCount" content="1359">
-
-
-
-<meta itemprop="keywords" content="lisp,clos," />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Classes in Lisp: an introduction to CLOS"/>
-<meta name="twitter:description" content="An introduction to the Common Lisp Object System"/>
-
-
-    </head>
-<body>
-    <nav class="main-nav">
-	
-		<a href='https://www.lambda-out-loud.com'> <span class="arrow">←</span>Home</a>
-	
-
-	
- 		<a href='/about/'>About</a>
-  	
-
-	
-		<a class="cta" href="https://www.lambda-out-loud.com/index.xml">Subscribe</a>
-	
-</nav>
-
-    <section id="wrapper">
         
-        
-<article class="post">
-    <header>
-        <h1>Classes in Lisp: an introduction to CLOS</h1>
-        <h2 class="subtitle">An introduction to the Common Lisp Object System</h2>
-        <h2 class="headline">
-        June 6, 2018
-        <br>
-        
-        
-            
-                <a href="https://www.lambda-out-loud.com/tags/lisp" class="tag">lisp</a>
-            
-                <a href="https://www.lambda-out-loud.com/tags/clos" class="tag">clos</a>
-            
-        
-        
-        </h2>
+<main class="content" role="main">
+  <article class="post">
+    <header class="post-header">
+      
+      <h1 class="post-title">Classes in Lisp: an introduction to CLOS</h1>
+      <section class="post-meta">
+        <time class="post-date">June 06, 2018</time>
+      </section>
     </header>
-    <section id="post-body">
-        <p>If you&rsquo;re coming from the more mainstream OO languages, the Common Lisp Object
+    <section class="post-content">
+      <p>If you&rsquo;re coming from the more mainstream OO languages, the Common Lisp Object
 System (<em>CLOS</em>) might seem a bit alien. This introduction is intended to get
-you up to speed with the basic principles of object orientation in Lisp.
-</p>
-
+you up to speed with the basic principles of object orientation in Lisp.</p>
 <h2 id="object-structure">Object structure</h2>
-
 <p>To see how CLOS differs from your regular OO language, we&rsquo;ll start with a
 familiar example and work our way towards the Lisp equivalent. Let&rsquo;s take a
 look at this highly sophisticated <code>Player</code> class:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">Player</span> <span style="color:#666">{</span>
 
-<pre><code class="language-java">public class Player {
+  <span style="color:#007020;font-weight:bold">private</span> String name<span style="color:#666">;</span>
+  <span style="color:#007020;font-weight:bold">private</span> Integer hitpoints <span style="color:#666">=</span> 100<span style="color:#666">;</span>
 
-  private String name;
-  private Integer hitpoints = 100;
+  <span style="color:#007020;font-weight:bold">public</span> <span style="color:#06287e">Player</span><span style="color:#666">(</span>String name<span style="color:#666">)</span> <span style="color:#666">{</span>
+    <span style="color:#007020;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#4070a0">name</span> <span style="color:#666">=</span> name<span style="color:#666">;</span>
+  <span style="color:#666">}</span>
 
-  public Player(String name) {
-    this.name = name;
-  }
+  <span style="color:#007020;font-weight:bold">public</span> String <span style="color:#06287e">getName</span><span style="color:#666">(</span><span style="color:#666">)</span> <span style="color:#666">{</span>
+    <span style="color:#007020;font-weight:bold">return</span> name<span style="color:#666">;</span>
+  <span style="color:#666">}</span>
 
-  public String getName() {
-    return name;
-  }
+  <span style="color:#007020;font-weight:bold">public</span> String <span style="color:#06287e">getHitpoints</span><span style="color:#666">(</span><span style="color:#666">)</span> <span style="color:#666">{</span>
+    <span style="color:#007020;font-weight:bold">return</span> hitpoints<span style="color:#666">;</span>
+  <span style="color:#666">}</span>
 
-  public String getHitpoints() {
-    return hitpoints;
-  }
-
-  public void receiveDamage(Integer damage) {
-    hitpoints -= damage;
-  }
-}
-</code></pre>
-
-<p>In Java, and many other languages, methods and properties are put together in
+  <span style="color:#007020;font-weight:bold">public</span> <span style="color:#902000">void</span> <span style="color:#06287e">receiveDamage</span><span style="color:#666">(</span>Integer damage<span style="color:#666">)</span> <span style="color:#666">{</span>
+    hitpoints <span style="color:#666">-</span><span style="color:#666">=</span> damage<span style="color:#666">;</span>
+  <span style="color:#666">}</span>
+<span style="color:#666">}</span>
+</code></pre></div><p>In Java, and many other languages, methods and properties are put together in
 the class definition. Lisp takes a different approach, separating the structure
 (properties) from the functionality (methods) of a class.</p>
-
 <h3 id="defining-a-class">Defining a class</h3>
-
 <p>We&rsquo;ll define a class using the <a href="http://clhs.lisp.se/Body/m_defcla.htm"><code>defclass</code></a> macro. This describes
 the structure of the class. In essence, it is just a list of properties with
 some info about how these properties are accessed and initialized. In Lisp,
 properties are called <em>slots</em>.</p>
-
 <pre><code>(defclass class-name ({superclass-name}*)
   ({slot-specifier}*)
   [[class-option]])
-</code></pre>
-
-<ul>
+</code></pre><ul>
 <li><code>{superclass-name}*</code> contains the parents of this class. Multiple parents are
 allowed, we&rsquo;ll get to that later!</li>
 <li><code>{slot-specifier}*</code> contains the list of slots (properties) the class has.</li>
 <li><code>[[class option]]</code> is used for some additional info and behaviour. For
 example, you can add a docstring using <code>:documentation</code>.</li>
 </ul>
-
 <p>Taking our <code>Player</code> example, this is how it would look like in Lisp:</p>
-
-<pre><code class="language-lisp">(defclass player ()
-  ((name
-    :initarg :name
-    :accessor name)
-   (hitpoints
-    :initform 100
-    :accessor hitpoints))
-  (:documentation &quot;A docstring just to show how a class-option looks like&quot;))
-</code></pre>
-
-<h3 id="slots">Slots</h3>
-
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#007020">defclass</span> <span style="color:#bb60d5">player</span> ()
+  ((<span style="color:#bb60d5">name</span>
+    <span style="color:#517918">:initarg</span> <span style="color:#517918">:name</span>
+    <span style="color:#517918">:accessor</span> <span style="color:#bb60d5">name</span>)
+   (<span style="color:#bb60d5">hitpoints</span>
+    <span style="color:#517918">:initform</span> <span style="color:#40a070">100</span>
+    <span style="color:#517918">:accessor</span> <span style="color:#bb60d5">hitpoints</span>))
+  (<span style="color:#517918">:documentation</span> <span style="color:#4070a0">&#34;A docstring just to show how a class-option looks like&#34;</span>))
+</code></pre></div><h3 id="slots">Slots</h3>
 <p>The slot specifiers describe the slots: how they&rsquo;re accessed, their initial
 value, and so on. This is done using slot options. These are the ones most
 often used:</p>
-
 <ul>
 <li><code>:initarg</code> allows the slot to be set when constructing a new instance, using
 the key provided.</li>
@@ -180,23 +136,16 @@ the key provided.</li>
 <li><code>:accessor</code> combines <code>:reader</code> and <code>:writer</code>. In essence, it is both a getter
 and a setter. Multiple accessors can be defined for the same slot.</li>
 </ul>
-
 <p>Other slot options exist (<code>:type</code>, <code>:documentation</code>, &hellip;). Take a look at the
 <a href="http://clhs.lisp.se/Body/m_defcla.htm">HyperSpec</a> for some more information.</p>
-
 <h3 id="object-instantiation">Object instantiation</h3>
-
 <p>You can make an instance of a class using <a href="http://www.lispworks.com/documentation/lw60/CLHS/Body/f_mk_ins.htm"><code>make-instance</code></a>.
 This is where the <code>:initarg</code>s come into play.</p>
-
-<pre><code class="language-lisp">(defvar *p* (make-instance 'player :name &quot;AzureDiamond&quot;))
-</code></pre>
-
-<p>This will create a player named <em>&ldquo;AzureDiamond&rdquo;</em>, with 100 hitpoints. Both slots
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#007020">defvar</span> *p* (<span style="color:#06287e">make-instance</span> <span style="color:#517918">&#39;player</span> <span style="color:#517918">:name</span> <span style="color:#4070a0">&#34;AzureDiamond&#34;</span>))
+</code></pre></div><p>This will create a player named <em>&ldquo;AzureDiamond&rdquo;</em>, with 100 hitpoints. Both slots
 of the class are defined with an <code>:accessor</code>. This accessor allows the value
-of the slot to be retrieved. It is also *setf*able, and thus acts as a setter
+of the slot to be retrieved. It is also <em>setf</em>able, and thus acts as a setter
 as well.</p>
-
 <pre><code>CL-USER&gt; (name *p*)
 &quot;AzureDiamond&quot;
 
@@ -208,111 +157,77 @@ CL-USER&gt; (setf (hitpoints *p*) 90)
 
 CL-USER&gt; (hitpoints *p*)
 90
-</code></pre>
-
-<div class="notices " ><p>Slot values can be retrieved using <code>slot-value</code> as well. It is, however,
+</code></pre><p>Slot values can be retrieved using <code>slot-value</code> as well. It is, however,
 considered best practice to define an accessor instead.</p>
-</div>
-
-
-<div class="notices " ><p>CLOS doesn&rsquo;t provide encapsulation; slots cannot be defined as protected or
+<p>CLOS doesn&rsquo;t provide encapsulation; slots cannot be defined as protected or
 private. Instead, the programmer decides which accessors are exported in the
 package definition. Keep in mind that <code>slot-value</code> could still be used.</p>
-</div>
-
-
 <p>Some people like to wrap <code>make-instance</code> to define a constructor of some sorts.
 This allows you to define required parameters. This is just a side note however,
 and not mandatory at all.</p>
-
-<pre><code class="language-lisp">(defun make-player (name)
-  (make-instance 'player :name name))
-</code></pre>
-
-<p>A useful macro worth mentioning is <a href="http://www.lispworks.com/documentation/lw51/CLHS/Body/m_w_acce.htm"><code>with-accessors</code></a>. You&rsquo;ll
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#007020">defun</span> <span style="color:#bb60d5">make-player</span> (<span style="color:#bb60d5">name</span>)
+  (<span style="color:#06287e">make-instance</span> <span style="color:#517918">&#39;player</span> <span style="color:#517918">:name</span> <span style="color:#bb60d5">name</span>))
+</code></pre></div><p>A useful macro worth mentioning is <a href="http://www.lispworks.com/documentation/lw51/CLHS/Body/m_w_acce.htm"><code>with-accessors</code></a>. You&rsquo;ll
 often find yourself writing code like this:</p>
-
-<pre><code class="language-lisp">;; Don't allow negative hitpoints.
-(when (minusp (hitpoints player))
-  (setf (hitpoints player) 0))
-</code></pre>
-
-<p><code>with-accessors</code> prevents the duplication of the accessor calls. The gain isn&rsquo;t
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#60a0b0;font-style:italic">;; Don&#39;t allow negative hitpoints.</span>
+(<span style="color:#007020">when</span> (<span style="color:#06287e">minusp</span> (<span style="color:#bb60d5">hitpoints</span> <span style="color:#bb60d5">player</span>))
+  (<span style="color:#007020">setf</span> (<span style="color:#bb60d5">hitpoints</span> <span style="color:#bb60d5">player</span>) <span style="color:#40a070">0</span>))
+</code></pre></div><p><code>with-accessors</code> prevents the duplication of the accessor calls. The gain isn&rsquo;t
 that apparent in such a small example, but it is nice knowing this macro exists
 for when your&rsquo;re writing more complex code.</p>
-
-<pre><code class="language-lisp">;; Don't allow negative hitpoints.
-(with-accessors ((hitpoints hitpoints)) player
-  (when (minusp hitpoints)
-    (setf hitpoints 0)))
-</code></pre>
-
-<h2 id="object-behaviour">Object behaviour</h2>
-
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#60a0b0;font-style:italic">;; Don&#39;t allow negative hitpoints.</span>
+(<span style="color:#007020">with-accessors</span> ((<span style="color:#bb60d5">hitpoints</span> <span style="color:#bb60d5">hitpoints</span>)) <span style="color:#bb60d5">player</span>
+  (<span style="color:#007020">when</span> (<span style="color:#06287e">minusp</span> <span style="color:#bb60d5">hitpoints</span>)
+    (<span style="color:#007020">setf</span> <span style="color:#bb60d5">hitpoints</span> <span style="color:#40a070">0</span>)))
+</code></pre></div><h2 id="object-behaviour">Object behaviour</h2>
 <p>Object behaviour is implemented using methods. Methods are concrete
 implementations of generic functions. Think of a generic function like a
 blueprint or an interface.</p>
-
 <p>The Lisp version of <code>receiveDamage</code> could look like this:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#007020">defgeneric</span> <span style="color:#bb60d5">receive-damage</span> (<span style="color:#bb60d5">player</span> <span style="color:#bb60d5">damage</span>)
+  (<span style="color:#517918">:documentation</span> <span style="color:#4070a0">&#34;Applies damage to the player.&#34;</span>))
 
-<pre><code class="language-lisp">(defgeneric receive-damage (player damage)
-  (:documentation &quot;Applies damage to the player.&quot;))
+(<span style="color:#007020">defmethod</span> <span style="color:#bb60d5">receive-damage</span> ((<span style="color:#bb60d5">player</span> <span style="color:#bb60d5">player</span>) <span style="color:#bb60d5">damage</span>)
+  (<span style="color:#007020">decf</span> (<span style="color:#bb60d5">hitpoints</span> <span style="color:#bb60d5">player</span>) <span style="color:#bb60d5">damage</span>))
 
-(defmethod receive-damage ((player player) damage)
-  (decf (hitpoints player) damage))
-
-;; Usage
-CL-USER&gt; (receive-damage *p* 10)
-80
-</code></pre>
-
-<div class="notices " ><p><code>defgeneric</code> is optional. When a <code>defmethod</code> is encountered for which a
+<span style="color:#60a0b0;font-style:italic">;; Usage</span>
+<span style="color:#bb60d5">CL-USER&gt;</span> (<span style="color:#bb60d5">receive-damage</span> *p* <span style="color:#40a070">10</span>)
+<span style="color:#40a070">80</span>
+</code></pre></div><p><code>defgeneric</code> is optional. When a <code>defmethod</code> is encountered for which a
 generic doesn&rsquo;t exist yet, it will be created implicitly.</p>
-</div>
-
-
 <p>Methods look a lot like regular functions. The big difference between the two is
 that methods specialize their behaviour based on their arguments. This means
 that when multiple methods are defined for a generic, the one that best matches
 the given argument will be called.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#007020">defgeneric</span> <span style="color:#bb60d5">echo</span> (<span style="color:#bb60d5">x</span>))
 
-<pre><code class="language-lisp">(defgeneric echo (x))
+(<span style="color:#007020">defmethod</span> <span style="color:#bb60d5">echo</span> ((<span style="color:#bb60d5">x</span>))
+  (<span style="color:#06287e">format</span> <span style="color:#60add5">t</span> <span style="color:#4070a0">&#34;Argument: ~A&#34;</span> <span style="color:#bb60d5">x</span>))
 
-(defmethod echo ((x))
-  (format t &quot;Argument: ~A&quot; x))
+<span style="color:#bb60d5">CL-USER&gt;</span> (<span style="color:#bb60d5">echo</span> <span style="color:#40a070">5</span>)
+<span style="color:#bb60d5">Argument:</span> <span style="color:#40a070">5</span>
 
-CL-USER&gt; (echo 5)
-Argument: 5
+(<span style="color:#007020">defmethod</span> <span style="color:#bb60d5">echo</span> ((<span style="color:#bb60d5">x</span> <span style="color:#0e84b5;font-weight:bold">integer</span>))
+  (<span style="color:#06287e">format</span> <span style="color:#60add5">t</span> <span style="color:#4070a0">&#34;Argument is an integer: ~A&#34;</span> <span style="color:#bb60d5">x</span>))
 
-(defmethod echo ((x integer))
-  (format t &quot;Argument is an integer: ~A&quot; x))
+<span style="color:#60a0b0;font-style:italic">;; Because an integer is passed, the more specific method</span>
+<span style="color:#60a0b0;font-style:italic">;; will be called.</span>
+<span style="color:#bb60d5">CL-USER&gt;</span> (<span style="color:#bb60d5">echo</span> <span style="color:#40a070">5</span>)
+<span style="color:#bb60d5">Argument</span> <span style="color:#bb60d5">is</span> <span style="color:#bb60d5">an</span> <span style="color:#bb60d5">integer:</span> <span style="color:#40a070">5</span>
 
-;; Because an integer is passed, the more specific method
-;; will be called.
-CL-USER&gt; (echo 5)
-Argument is an integer: 5
-
-</code></pre>
-
-<p>Lots of interesting things can be done with methods, such as
+</code></pre></div><p>Lots of interesting things can be done with methods, such as
 <a href="http://www.gigamonkeys.com/book/object-reorientation-generic-functions.html#method-combination">method combination</a>, but this goes beyond the scope of a
 simple introduction.</p>
-
 <h2 id="inheritance">Inheritance</h2>
-
 <p>When defining a class using <code>defclass</code>, you can specify a list of parent classes
 as well. Let&rsquo;s say we will allow our players to be a mighty <code>Wizard</code>:</p>
-
-<pre><code class="language-lisp">(defclass wizard (player)
-  ((mana
-    :initform 100
-    :accessor mana)))
-</code></pre>
-
-<p>This wizard class now inherits all slots of the parent class. Methods applying
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#007020">defclass</span> <span style="color:#bb60d5">wizard</span> (<span style="color:#bb60d5">player</span>)
+  ((<span style="color:#bb60d5">mana</span>
+    <span style="color:#517918">:initform</span> <span style="color:#40a070">100</span>
+    <span style="color:#517918">:accessor</span> <span style="color:#bb60d5">mana</span>)))
+</code></pre></div><p>This wizard class now inherits all slots of the parent class. Methods applying
 to player objects will work for wizards as well. Let&rsquo;s see it in action:</p>
-
-<pre><code class="language-lisp">CL-USER&gt; (defvar *w* (make-instance 'wizard :name &quot;Gandalf&quot;))
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-txt" data-lang="txt">CL-USER&gt; (defvar *w* (make-instance &#39;wizard :name &#34;Gandalf&#34;))
 #&lt;WIZARD {100297CD03}&gt;
 
 ;; Slots are inherited from the parent.
@@ -321,163 +236,94 @@ CL-USER&gt; (describe *w*)
   [standard-object]
 
 Slots with :INSTANCE allocation:
-  NAME                           = &quot;Gandalf&quot;
+  NAME                           = &#34;Gandalf&#34;
   HITPOINTS                      = 100
   MANA                           = 100
 
 ;; So are the methods.
 CL-USER&gt; (hitpoints *w*)
 100
-</code></pre>
-
-<p>This works as expected; slots and methods that apply to the parent class are
+</code></pre></div><p>This works as expected; slots and methods that apply to the parent class are
 inherited by the child.</p>
-
 <p>We can implement <code>receive-damage</code> for our wizard class as well. When we use
 this method, the method whose arguments best match the given one will be called.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#007020">defmethod</span> <span style="color:#bb60d5">receive-damage</span> ((<span style="color:#bb60d5">wizard</span> <span style="color:#bb60d5">wizard</span>) <span style="color:#bb60d5">damage</span>)
+  <span style="color:#60a0b0;font-style:italic">;; Wizards take extra damage!</span>
+  (<span style="color:#007020">decf</span> (<span style="color:#bb60d5">hitpoints</span> <span style="color:#bb60d5">wizard</span>) (<span style="color:#06287e">*</span> <span style="color:#40a070">1.5</span> <span style="color:#bb60d5">damage</span>)))
 
-<pre><code class="language-lisp">(defmethod receive-damage ((wizard wizard) damage)
-  ;; Wizards take extra damage!
-  (decf (hitpoints wizard) (* 1.5 damage)))
+<span style="color:#bb60d5">CL-USER&gt;</span> (<span style="color:#bb60d5">receive-damage</span> (<span style="color:#06287e">make-instance</span> <span style="color:#517918">&#39;wizard</span>) <span style="color:#40a070">10</span>)
+<span style="color:#40a070">85.0</span>
 
-CL-USER&gt; (receive-damage (make-instance 'wizard) 10)
-85.0
-
-CL-USER&gt; (receive-damage (make-instance 'player) 10)
-90
-</code></pre>
-
-<h3 id="multiple-inheritance">Multiple inheritance</h3>
-
+<span style="color:#bb60d5">CL-USER&gt;</span> (<span style="color:#bb60d5">receive-damage</span> (<span style="color:#06287e">make-instance</span> <span style="color:#517918">&#39;player</span>) <span style="color:#40a070">10</span>)
+<span style="color:#40a070">90</span>
+</code></pre></div><h3 id="multiple-inheritance">Multiple inheritance</h3>
 <p>Another intersting and useful feature of CLOS is that is supports multiple
 inheritance. A class is allowed to have multiple parent classes.</p>
-
 <p>We&rsquo;ll use an example to make things clear. We want players to be able to be a
 <em>battlemage</em>, a crossover between a wizard and a warrior.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#007020">defclass</span> <span style="color:#bb60d5">warrior</span> (<span style="color:#bb60d5">player</span>) ())
 
-<pre><code class="language-lisp">(defclass warrior (player) ())
+(<span style="color:#007020">defmethod</span> <span style="color:#bb60d5">receive-damage</span> ((<span style="color:#bb60d5">warrior</span> <span style="color:#bb60d5">warrior</span>) <span style="color:#bb60d5">damage</span>)
+  <span style="color:#60a0b0;font-style:italic">;; Warriors receive reduced damage.</span>
+  (<span style="color:#007020">decf</span> (<span style="color:#bb60d5">hitpoints</span> <span style="color:#bb60d5">warrior</span>) (<span style="color:#06287e">*</span> <span style="color:#40a070">0.5</span> <span style="color:#bb60d5">damage</span>)))
 
-(defmethod receive-damage ((warrior warrior) damage)
-  ;; Warriors receive reduced damage.
-  (decf (hitpoints warrior) (* 0.5 damage)))
-
-;; A battlemage is a hybrid between a wizard and a
-;; warrior.
-(defclass battlemage (wizard warrior))
-</code></pre>
-
-<p>Multiple inheritance suffers from the
+<span style="color:#60a0b0;font-style:italic">;; A battlemage is a hybrid between a wizard and a</span>
+<span style="color:#60a0b0;font-style:italic">;; warrior.</span>
+(<span style="color:#007020">defclass</span> <span style="color:#bb60d5">battlemage</span> (<span style="color:#bb60d5">wizard</span> <span style="color:#bb60d5">warrior</span>))
+</code></pre></div><p>Multiple inheritance suffers from the
 <em><a href="https://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem">Deadly Diamond of Death</a></em> problem. Common Lisp provides
 sensible defaults to tackle this, as well as giving the developer full control
 on how conflicts should be handled.</p>
-
 <blockquote>
 <p>The &ldquo;diamond problem&rdquo; is an ambiguity that arises when two classes B and C
 inherit from A, and class D inherits from both B and C. If there is a method
 in A that B and C have overridden, and D does not override it, then which
 version of the method does D inherit: that of B, or that of C?</p>
 </blockquote>
-
 <p>Lisp looks at the order in which the parent classes are listed to decide which
 one has priority. So for our example, the wizard class takes priority.</p>
-
-<pre><code class="language-Lisp">;; Both warrior and wizard define a receive-damage method,
-;; but because the wizard is listed first as a parent class
-;; of the battlemage, this method will be called.
-CL-USER&gt; (receive-damage (make-instance 'battlemage) 10)
-85.0
-</code></pre>
-
-<p>It can still occur that there is a &lsquo;tie&rsquo; between which method should be called.
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Lisp" data-lang="Lisp"><span style="color:#60a0b0;font-style:italic">;; Both warrior and wizard define a receive-damage method,</span>
+<span style="color:#60a0b0;font-style:italic">;; but because the wizard is listed first as a parent class</span>
+<span style="color:#60a0b0;font-style:italic">;; of the battlemage, this method will be called.</span>
+<span style="color:#bb60d5">CL-USER&gt;</span> (<span style="color:#bb60d5">receive-damage</span> (<span style="color:#06287e">make-instance</span> <span style="color:#517918">&#39;battlemage</span>) <span style="color:#40a070">10</span>)
+<span style="color:#40a070">85.0</span>
+</code></pre></div><p>It can still occur that there is a &lsquo;tie&rsquo; between which method should be called.
 CLOS has well-defined rules for what should happen in these cases. However, it
 is considered best practice to manually define the order if such a tie can
 occur. This goes beyond this introduction though.</p>
-
 <h2 id="further-reading">Further reading</h2>
-
 <p>While I hope this little guide helped you get started with CLOS, you&rsquo;ll want to
 go more in-depth eventually. I&rsquo;ve used the following sources to write this post,
 I recommend you check them out as well!</p>
-
 <ul>
 <li><a href="http://www.aiai.ed.ac.uk/~jeff/clos-guide.html">A brief guide to CLOS</a></li>
 <li><a href="http://www.gigamonkeys.com/book/object-reorientation-classes.html">Object Reorientation: classes</a></li>
 <li><a href="http://www.gigamonkeys.com/book/object-reorientation-generic-functions.html">Object Reorientation: generic functions</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Common_Lisp_Object_System">Wikipedia</a></li>
 </ul>
-    </section>
-</article>
-
-<footer id="post-meta" class="clearfix">
-    
-    <img class="avatar" src="https://www.lambda-out-loud.com/images/lambda.png">
-    <div>
-        <span class="dark">Lambda Out Loud</span>
-        <span>A blog about all things code</span>
-    </div>
-    
-    <section id="sharing">
-        <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fwww.lambda-out-loud.com%2fposts%2fclos-introduction%2f - Classes%20in%20Lisp%3a%20an%20introduction%20to%20CLOS "><span class="icon-twitter"> tweet</span></a>
-
-<a class="facebook" href="#" onclick="
-    window.open(
-      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
-      'facebook-share-dialog',
-      'width=626,height=436');
-    return false;"><span class="icon-facebook-rect"> Share</span>
-</a>
 
     </section>
+    <footer class="post-footer">
+      <section class="tags post-meta">
+        Tagged
+        <a href="https://www.lambda-out-loud.com/tags/lisp/">lisp</a>
+          <a href="https://www.lambda-out-loud.com/tags/clos/">clos</a>
+          
+      </section>
+    </footer>
+  </article>
+</main>
+
+        <footer class="site-footer">
+  <section class="rss"><a class="subscribe-button icon-feed" href="/index.xml"></a></section>
+  
+  
+  <section class="copyright">&copy; 2020 Lambda Out Loud |
+  <a href="mailto:mark.gerarts+lambda@gmail.com">Contact</a></section>
 </footer>
 
 
 
-<ul id="post-list" class="archive readmore">
-    <h3>Read more</h3>
 
-    
-    
-    
-        <li>
-            <a href="/posts/accessing-private-properties-php/">Accessing private properties in PHP<aside class="dates">Jun 9 2018</aside></a>
-        </li>
-    
-</ul>
-
-
-
-        <footer id="footer">
-    
-    <p class="small">
-    
-        © Copyright 2018 Lambda Out Loud | <a href="mailto:mark.gerarts@gmail.com">Contact</a>
-    
-    </p>
-</footer>
-
-    </section>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://www.lambda-out-loud.com/js/main.js"></script>
-<script src="https://www.lambda-out-loud.com/js/highlight.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-
-
-<script>
- var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
- if (dnt != "1" && dnt != "yes") {
-     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-     ga('create', ' UA-99354109-1', 'auto');
-     ga('set', 'anonymizeIp', true);
-     ga('send', 'pageview');
- } else {
-     console.debug("Respecting Do-Not-Track, not loading analytics. See https://www.paulfurley.com/google-analytics-dnt/");
- }
-</script>
-
-
-</body>
+    </body>
 </html>

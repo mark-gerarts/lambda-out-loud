@@ -1,299 +1,241 @@
 <!DOCTYPE html>
-<html lang="en-us">
-	<head>
-    <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="author" content="Lambda Out Loud">
-<meta name="description" content="A blog about all things code">
-<meta name="generator" content="Hugo 0.41" />
-<title>Accessing private properties in PHP</title>
-<link rel="shortcut icon" href="https://www.lambda-out-loud.com/images/favicon.ico">
-<link rel="stylesheet" href="https://www.lambda-out-loud.com/css/style.css">
-<link rel="stylesheet" href="https://www.lambda-out-loud.com/css/highlight.css">
+<html>
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+    
+    <title>
+      
+      Accessing private properties in PHP - Lambda Out Loud
+      
+		</title>
 
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" type="text/css" href="/assets/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Lato:100,100i,300,300i,400,400i,700,700i|Source+Code+Pro:300,400,500,700" rel="stylesheet">
+    
 
+    
+    
 
+    <script>
+      var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      if (dnt != "1" && dnt != "yes") {
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                                   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-99354109-1', 'auto');
+          ga('set', 'anonymizeIp', true);
+          ga('send', 'pageview');
+      } else {
+          console.debug("Respecting Do-Not-Track, not loading analytics.");
+      }
+     </script>
+</head>
 
-<link href="https://www.lambda-out-loud.com/index.xml" rel="alternate" type="application/rss+xml" title="Lambda Out Loud" />
+    <body class="post-template">
+        <header class="main-header">
+	<div class="main-header-content">
+		<a href="/" alt="site-logo">
+			<img src="/static/img/lambda.png">
+		</a>
+		<h2 class="blog-description">A blog about all things code</h2>
+	</div>
 
+	<div class="nav">
+    
+		
+      <a class="nav- " role="presentation" href="/posts/">Posts</a>
+		
+      <a class="nav- " role="presentation" href="/creative-code/">Creative code</a>
+		
+	</div>
+</header>
 
-<meta property="og:title" content="Accessing private properties in PHP" />
-<meta property="og:description" content="Finding a way around property visibility" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.lambda-out-loud.com/posts/accessing-private-properties-php/" />
-
-
-
-<meta property="article:published_time" content="2018-06-09T19:41:36&#43;02:00"/>
-
-<meta property="article:modified_time" content="2018-06-09T19:41:36&#43;02:00"/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<meta itemprop="name" content="Accessing private properties in PHP">
-<meta itemprop="description" content="Finding a way around property visibility">
-
-
-<meta itemprop="datePublished" content="2018-06-09T19:41:36&#43;02:00" />
-<meta itemprop="dateModified" content="2018-06-09T19:41:36&#43;02:00" />
-<meta itemprop="wordCount" content="1144">
-
-
-
-<meta itemprop="keywords" content="php," />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Accessing private properties in PHP"/>
-<meta name="twitter:description" content="Finding a way around property visibility"/>
-
-
-    </head>
-<body>
-    <nav class="main-nav">
-	
-		<a href='https://www.lambda-out-loud.com'> <span class="arrow">←</span>Home</a>
-	
-
-	
- 		<a href='/about/'>About</a>
-  	
-
-	
-		<a class="cta" href="https://www.lambda-out-loud.com/index.xml">Subscribe</a>
-	
-</nav>
-
-    <section id="wrapper">
         
-        
-<article class="post">
-    <header>
-        <h1>Accessing private properties in PHP</h1>
-        <h2 class="subtitle">Finding a way around property visibility</h2>
-        <h2 class="headline">
-        June 9, 2018
-        <br>
-        
-        
-            
-                <a href="https://www.lambda-out-loud.com/tags/php" class="tag">php</a>
-            
-        
-        
-        </h2>
+<main class="content" role="main">
+  <article class="post">
+    <header class="post-header">
+      
+      <h1 class="post-title">Accessing private properties in PHP</h1>
+      <section class="post-meta">
+        <time class="post-date">June 09, 2018</time>
+      </section>
     </header>
-    <section id="post-body">
-        <p>Private properties can only be accessed by the class that defines the
+    <section class="post-content">
+      <p>Private properties can only be accessed by the class that defines the
 property&hellip; right? Actually, PHP has a few ways to circumvent this: reflection,
-closures and array casting.
-</p>
-
+closures and array casting.</p>
 <h2 id="reflection-slow-but-clean">Reflection: slow, but clean</h2>
-
 <p>PHP provides a <a href="https://secure.php.net/manual/en/book.reflection.php">reflection API</a> to retrieve metadata of classes,
 methods, interfaces, and so on. Of special interest to us is the
 <a href="https://secure.php.net/manual/en/class.reflectionproperty.php"><code>ReflectionProperty</code></a> class. Among other things, it has
 the wonderful method <code>setAccesible</code>.</p>
-
 <p>In our code samples, we&rsquo;re going to try to retrieve and change the property
 <code>$property</code> of the following class:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
 
-<pre><code class="language-php">&lt;?php
+<span style="color:#007020;font-weight:bold">namespace</span> PhpPrivateAccess;
 
-namespace PhpPrivateAccess;
-
-class MyClass
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">MyClass</span>
 {
-    private $property = 'Im private!';
+    <span style="color:#007020;font-weight:bold">private</span> <span style="color:#bb60d5">$property</span> <span style="color:#666">=</span> <span style="color:#4070a0">&#39;Im private!&#39;</span>;
 
-    public function getProperty(): string
+    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">getProperty</span>()<span style="color:#666">:</span> string
     {
-        return $this-&gt;property;
+        <span style="color:#007020;font-weight:bold">return</span> <span style="color:#bb60d5">$this</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">property</span>;
     }
 
-    public function setProperty(string $property): void
+    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">setProperty</span>(string <span style="color:#bb60d5">$property</span>)<span style="color:#666">:</span> void
     {
-        $this-&gt;property = $property;
+        <span style="color:#bb60d5">$this</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">property</span> <span style="color:#666">=</span> <span style="color:#bb60d5">$property</span>;
     }
 }
-
-</code></pre>
-
-<p>Using reflection, we can access the property using a clean API. Both reading the
+</code></pre></div><p>Using reflection, we can access the property using a clean API. Both reading the
 property and changing it are possible after a call to <code>setAccessible</code>.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
 
-<pre><code class="language-php">&lt;?php
+<span style="color:#007020;font-weight:bold">use</span> PhpPrivateAccess\MyClass;
 
-use PhpPrivateAccess\MyClass;
+<span style="color:#bb60d5">$class</span> <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> MyClass();
+<span style="color:#bb60d5">$reflectionProperty</span> <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> \ReflectionProperty(MyClass<span style="color:#666">::</span><span style="color:#4070a0">class</span>, <span style="color:#4070a0">&#39;property&#39;</span>);
+<span style="color:#bb60d5">$reflectionProperty</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">setAccessible</span>(<span style="color:#007020;font-weight:bold">true</span>);
 
-$class = new MyClass();
-$reflectionProperty = new \ReflectionProperty(MyClass::class, 'property');
-$reflectionProperty-&gt;setAccessible(true);
-
-// Once the property is made accessible, you can read it..
-var_dump($reflectionProperty-&gt;getValue($class));
-// =&gt; string(11) &quot;Im private!&quot;
-
-// And even change it!
-$reflectionProperty-&gt;setValue($class, 'Im changed');
-var_dump($class-&gt;getProperty());
-// =&gt; string(10) &quot;Im changed&quot;
-</code></pre>
-
-<h2 id="closures-an-interesting-alternative">Closures: an interesting alternative</h2>
-
+<span style="color:#60a0b0;font-style:italic">// Once the property is made accessible, you can read it..
+</span><span style="color:#60a0b0;font-style:italic"></span>var_dump(<span style="color:#bb60d5">$reflectionProperty</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">getValue</span>(<span style="color:#bb60d5">$class</span>));
+<span style="color:#60a0b0;font-style:italic">// =&gt; string(11) &#34;Im private!&#34;
+</span><span style="color:#60a0b0;font-style:italic"></span>
+<span style="color:#60a0b0;font-style:italic">// And even change it!
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#bb60d5">$reflectionProperty</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">setValue</span>(<span style="color:#bb60d5">$class</span>, <span style="color:#4070a0">&#39;Im changed&#39;</span>);
+var_dump(<span style="color:#bb60d5">$class</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">getProperty</span>());
+<span style="color:#60a0b0;font-style:italic">// =&gt; string(10) &#34;Im changed&#34;
+</span></code></pre></div><h2 id="closures-an-interesting-alternative">Closures: an interesting alternative</h2>
 <p>PHP uses a class to represent functions: <a href="https://secure.php.net/manual/en/class.closure.php"><code>Closure</code></a>. While
 originally closures were just an implementation detail, they were officially
 added to the spec in PHP 5.4. As it turns out, closures can be abused to both
 read and write private properties. Marco Pivetta explains this in detail in <a href="https://ocramius.github.io/blog/accessing-private-php-class-members-without-reflection/">his
 blog post</a>.</p>
-
 <p>The idea is to create a getter using a closure, and then bind it to the class
 you want to access.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
 
-<pre><code class="language-php">&lt;?php
+<span style="color:#007020;font-weight:bold">use</span> PhpPrivateAccess\MyClass;
 
-use PhpPrivateAccess\MyClass;
+<span style="color:#bb60d5">$class</span> <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> MyClass();
 
-$class = new MyClass();
+<span style="color:#60a0b0;font-style:italic">// Create a closure from a callable and bind it to MyClass.
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#bb60d5">$closure</span> <span style="color:#666">=</span> \Closure<span style="color:#666">::</span><span style="color:#4070a0">bind</span>(<span style="color:#007020;font-weight:bold">function</span> (MyClass <span style="color:#bb60d5">$class</span>) {
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#bb60d5">$class</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">property</span>;
+}, <span style="color:#007020;font-weight:bold">null</span>, MyClass<span style="color:#666">::</span><span style="color:#4070a0">class</span>);
 
-// Create a closure from a callable and bind it to MyClass.
-$closure = \Closure::bind(function (MyClass $class) {
-    return $class-&gt;property;
-}, null, MyClass::class);
-
-var_dump($closure($class));
-// =&gt; string(11) &quot;Im private!&quot;
-</code></pre>
-
-<p>While this is pretty cool, it gets even better. You can retrieve the private
+var_dump(<span style="color:#bb60d5">$closure</span>(<span style="color:#bb60d5">$class</span>));
+<span style="color:#60a0b0;font-style:italic">// =&gt; string(11) &#34;Im private!&#34;
+</span></code></pre></div><p>While this is pretty cool, it gets even better. You can retrieve the private
 property <em>by reference</em>. So not only will you be able to retrieve its value,
 you&rsquo;ll be able to change it as well. Neat!</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
 
-<pre><code class="language-php">&lt;?php
+<span style="color:#007020;font-weight:bold">use</span> PhpPrivateAccess\MyClass;
 
-use PhpPrivateAccess\MyClass;
+<span style="color:#bb60d5">$class</span> <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> MyClass();
 
-$class = new MyClass();
+<span style="color:#60a0b0;font-style:italic">// Create the closure by reference.
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#bb60d5">$closure</span> <span style="color:#666">=</span> \Closure<span style="color:#666">::</span><span style="color:#4070a0">bind</span>(<span style="color:#007020;font-weight:bold">function</span> <span style="color:#666">&amp;</span>(MyClass <span style="color:#bb60d5">$class</span>) {
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#bb60d5">$class</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">property</span>;
+}, <span style="color:#007020;font-weight:bold">null</span>, MyClass<span style="color:#666">::</span><span style="color:#4070a0">class</span>);
 
-// Create the closure by reference.
-$closure = \Closure::bind(function &amp;(MyClass $class) {
-    return $class-&gt;property;
-}, null, MyClass::class);
+<span style="color:#bb60d5">$value</span> <span style="color:#666">=</span> <span style="color:#666">&amp;</span><span style="color:#bb60d5">$closure</span>(<span style="color:#bb60d5">$class</span>);
+<span style="color:#bb60d5">$value</span> <span style="color:#666">=</span> <span style="color:#4070a0">&#39;Im changed&#39;</span>;
 
-$value = &amp;$closure($class);
-$value = 'Im changed';
-
-var_dump($class-&gt;getProperty());
-// =&gt; string(10) &quot;Im changed&quot;
-</code></pre>
-
-<h2 id="casting-to-array">Casting to array</h2>
-
+var_dump(<span style="color:#bb60d5">$class</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">getProperty</span>());
+<span style="color:#60a0b0;font-style:italic">// =&gt; string(10) &#34;Im changed&#34;
+</span></code></pre></div><h2 id="casting-to-array">Casting to array</h2>
 <p>As a last option, we&rsquo;ll abuse PHP&rsquo;s implementation of casting an object to an
 array. When you cast an object to an array, <em>all</em> properties get exposed. Let&rsquo;s
 see it in action:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
 
-<pre><code class="language-php">&lt;?php
-
-class Visibility
+<span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">Visibility</span>
 {
-    public $public = 'public';
-    protected $protected = 'protected';
-    private $private = 'private';
+    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#bb60d5">$public</span> <span style="color:#666">=</span> <span style="color:#4070a0">&#39;public&#39;</span>;
+    <span style="color:#007020;font-weight:bold">protected</span> <span style="color:#bb60d5">$protected</span> <span style="color:#666">=</span> <span style="color:#4070a0">&#39;protected&#39;</span>;
+    <span style="color:#007020;font-weight:bold">private</span> <span style="color:#bb60d5">$private</span> <span style="color:#666">=</span> <span style="color:#4070a0">&#39;private&#39;</span>;
 }
 
-// We'll use Symfony's var dumper for this, because `var_dump` doesn't
-// print null characters (\x00).
-dump((array) new Visibility());
-// =&gt;
-// array:3 [
-//   &quot;public&quot; =&gt; &quot;public&quot;
-//   &quot;\x00*\x00protected&quot; =&gt; &quot;protected&quot;
-//   &quot;\x00Visibility\x00private&quot; =&gt; &quot;private&quot;
-// ]
-</code></pre>
-
-<p>As you can see, PHP uses a <a href="https://en.wikipedia.org/wiki/Null_character">null character</a> to separate the
+<span style="color:#60a0b0;font-style:italic">// We&#39;ll use Symfony&#39;s var dumper for this, because `var_dump` doesn&#39;t
+</span><span style="color:#60a0b0;font-style:italic">// print null characters (\x00).
+</span><span style="color:#60a0b0;font-style:italic"></span>dump((<span style="color:#007020;font-weight:bold">array</span>) <span style="color:#007020;font-weight:bold">new</span> Visibility());
+<span style="color:#60a0b0;font-style:italic">// =&gt;
+</span><span style="color:#60a0b0;font-style:italic">// array:3 [
+</span><span style="color:#60a0b0;font-style:italic">//   &#34;public&#34; =&gt; &#34;public&#34;
+</span><span style="color:#60a0b0;font-style:italic">//   &#34;\x00*\x00protected&#34; =&gt; &#34;protected&#34;
+</span><span style="color:#60a0b0;font-style:italic">//   &#34;\x00Visibility\x00private&#34; =&gt; &#34;private&#34;
+</span><span style="color:#60a0b0;font-style:italic">// ]
+</span></code></pre></div><p>As you can see, PHP uses a <a href="https://en.wikipedia.org/wiki/Null_character">null character</a> to separate the
 visibility scope from the property name.</p>
-
 <ul>
 <li>For <strong>public</strong> properties, only the property name is used as the key.</li>
 <li><strong>Protected</strong> properties get <code>*</code> as their visibility scope.</li>
 <li><strong>Private</strong> properties are prefixed by a fully qualified class name.</li>
 </ul>
-
 <p>While this is technically undefined behaviour, a <a href="https://github.com/php/php-src/blob/master/tests/classes/array_conversion_keys.phpt">test case</a>
 has been created to ensure it doesn&rsquo;t get changed. Knowing this, we can create
 a way to access any property we want.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
 
-<pre><code class="language-php">function get_property(object $object, string $property) {
-    $array = (array) $object;
-    $propertyLength = strlen($property);
-    foreach ($array as $key =&gt; $value) {
-        if (substr($key, -$propertyLength) === $property) {
-            return $value;
+<span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">get_property</span>(object <span style="color:#bb60d5">$object</span>, string <span style="color:#bb60d5">$property</span>) {
+    <span style="color:#bb60d5">$array</span> <span style="color:#666">=</span> (<span style="color:#007020;font-weight:bold">array</span>) <span style="color:#bb60d5">$object</span>;
+    <span style="color:#bb60d5">$propertyLength</span> <span style="color:#666">=</span> strlen(<span style="color:#bb60d5">$property</span>);
+    <span style="color:#007020;font-weight:bold">foreach</span> (<span style="color:#bb60d5">$array</span> <span style="color:#007020;font-weight:bold">as</span> <span style="color:#bb60d5">$key</span> <span style="color:#666">=&gt;</span> <span style="color:#bb60d5">$value</span>) {
+        <span style="color:#007020;font-weight:bold">if</span> (substr(<span style="color:#bb60d5">$key</span>, <span style="color:#666">-</span><span style="color:#bb60d5">$propertyLength</span>) <span style="color:#666">===</span> <span style="color:#bb60d5">$property</span>) {
+            <span style="color:#007020;font-weight:bold">return</span> <span style="color:#bb60d5">$value</span>;
         }
     }
 }
 
-$class = new PhpPrivateAccess\MyClass();
-var_dump(get_property($class, 'property'));
-// =&gt; string(11) &quot;Im private!&quot;
-</code></pre>
-
-<p>So, we can read properties using this method. But what about writing? One option
+<span style="color:#bb60d5">$class</span> <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> PhpPrivateAccess\MyClass();
+var_dump(get_property(<span style="color:#bb60d5">$class</span>, <span style="color:#4070a0">&#39;property&#39;</span>));
+<span style="color:#60a0b0;font-style:italic">// =&gt; string(11) &#34;Im private!&#34;
+</span></code></pre></div><p>So, we can read properties using this method. But what about writing? One option
 is to use <code>unserialize</code>. When you <code>serialize</code> an object, the string
 representation is basically that of a serialized array, prefixed with the class
 name. A comparison:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
 
-<pre><code class="language-php">&lt;?php
-
-$class = new PhpPrivateAccess\MyClass();
-var_dump(serialize((array) $class));
-// =&gt; string(67) &quot;a:1:{s:34:&quot;PhpPrivateAccess\MyClassproperty&quot;;s:11:&quot;Im private!&quot;;}&quot;
-
-var_dump(serialize($class));
-// =&gt; string(97) &quot;O:24:&quot;PhpPrivateAccess\MyClass&quot;:1:{s:34:&quot;PhpPrivateAccess\MyClassproperty&quot;;s:11:&quot;Im private!&quot;;}&quot;
-</code></pre>
-
-<p>Knowing this, we can fabricate a string to pass to <code>unserialize</code>. The result
+<span style="color:#bb60d5">$class</span> <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> PhpPrivateAccess\MyClass();
+var_dump(serialize((<span style="color:#007020;font-weight:bold">array</span>) <span style="color:#bb60d5">$class</span>));
+<span style="color:#60a0b0;font-style:italic">// =&gt; string(67) &#34;a:1:{s:34:&#34;PhpPrivateAccess\MyClassproperty&#34;;s:11:&#34;Im private!&#34;;}&#34;
+</span><span style="color:#60a0b0;font-style:italic"></span>
+var_dump(serialize(<span style="color:#bb60d5">$class</span>));
+<span style="color:#60a0b0;font-style:italic">// =&gt; string(97) &#34;O:24:&#34;PhpPrivateAccess\MyClass&#34;:1:{s:34:&#34;PhpPrivateAccess\MyClassproperty&#34;;s:11:&#34;Im private!&#34;;}&#34;
+</span></code></pre></div><p>Knowing this, we can fabricate a string to pass to <code>unserialize</code>. The result
 will be an new object with our new value for its property.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
 
-<pre><code class="language-php">&lt;?php
+<span style="color:#bb60d5">$class</span> <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> PhpPrivateAccess\MyClass();
 
-$class = new PhpPrivateAccess\MyClass();
+<span style="color:#bb60d5">$array</span> <span style="color:#666">=</span> (<span style="color:#007020;font-weight:bold">array</span>) <span style="color:#bb60d5">$class</span>;
+<span style="color:#bb60d5">$className</span> <span style="color:#666">=</span> get_class(<span style="color:#bb60d5">$class</span>);
+<span style="color:#bb60d5">$array</span>[<span style="color:#4070a0">&#34;</span><span style="color:#4070a0;font-weight:bold">\0</span><span style="color:#70a0d0;font-style:italic">{</span>$className<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0;font-weight:bold">\0</span><span style="color:#4070a0">property&#34;</span>] <span style="color:#666">=</span> <span style="color:#4070a0">&#39;changed&#39;</span>;
 
-$array = (array) $class;
-$className = get_class($class);
-$array[&quot;\0{$className}\0property&quot;] = 'changed';
+<span style="color:#bb60d5">$classLength</span> <span style="color:#666">=</span> strlen(<span style="color:#bb60d5">$className</span>);
+<span style="color:#bb60d5">$serializedArray</span> <span style="color:#666">=</span> serialize(<span style="color:#bb60d5">$array</span>);
+<span style="color:#bb60d5">$serializedArray</span> <span style="color:#666">=</span> substr(<span style="color:#bb60d5">$serializedArray</span>, <span style="color:#40a070">1</span>);
 
-$classLength = strlen($className);
-$serializedArray = serialize($array);
-$serializedArray = substr($serializedArray, 1);
-
-$serializedClass = &quot;O:{$classLength}:\&quot;{$className}\&quot;{$serializedArray}&quot;;
-$result = unserialize($serializedClass);
-var_dump($result-&gt;getProperty());
-// =&gt; string(10) &quot;Im changed&quot;
-</code></pre>
-
-<p>This is far from ideal however. <code>unserialize</code> is <a href="#performance">slow</a>, and the
+<span style="color:#bb60d5">$serializedClass</span> <span style="color:#666">=</span> <span style="color:#4070a0">&#34;O:</span><span style="color:#70a0d0;font-style:italic">{</span>$classLength<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">:</span><span style="color:#4070a0;font-weight:bold">\&#34;</span><span style="color:#70a0d0;font-style:italic">{</span>$className<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0;font-weight:bold">\&#34;</span><span style="color:#70a0d0;font-style:italic">{</span>$serializedArray<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&#34;</span>;
+<span style="color:#bb60d5">$result</span> <span style="color:#666">=</span> unserialize(<span style="color:#bb60d5">$serializedClass</span>);
+var_dump(<span style="color:#bb60d5">$result</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">getProperty</span>());
+<span style="color:#60a0b0;font-style:italic">// =&gt; string(10) &#34;Im changed&#34;
+</span></code></pre></div><p>This is far from ideal however. <code>unserialize</code> is <a href="#performance">slow</a>, and the
 resulting object is a new instance. This makes it pretty useless. On top of
 that, the code needed to achieve this looks really ugly.</p>
-
 <p>We can do better than this. You probably know about
 <a href="https://secure.php.net/manual/en/function.array-walk.php"><code>arrray_walk</code></a>. It walks over each element of an array, and
 applies a callback to it. This array is passed by reference. That&rsquo;s cool and
@@ -301,36 +243,30 @@ all, but how is this going to solve our problem? Well, apparently you can pass
 an object to <code>array_walk</code> without PHP complaining. It will implicitly get cast
 to an array, <strong>but</strong>, the values can be retrieved by reference. Interesting! We
 now know enough to set properties as well.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
 
-<pre><code class="language-php">&lt;?php
-
-function set_property(object $object, string $property, $newValue): void {
-    array_walk($object, function (&amp;$value, $key) use ($newValue, $property) {
-        // Analogous to `get_property`.
-        if (substr($key, -strlen($property)) === $property) {
-            $value = $newValue;
+<span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">set_property</span>(object <span style="color:#bb60d5">$object</span>, string <span style="color:#bb60d5">$property</span>, <span style="color:#bb60d5">$newValue</span>)<span style="color:#666">:</span> void {
+    array_walk(<span style="color:#bb60d5">$object</span>, <span style="color:#007020;font-weight:bold">function</span> (<span style="color:#666">&amp;</span><span style="color:#bb60d5">$value</span>, <span style="color:#bb60d5">$key</span>) <span style="color:#007020;font-weight:bold">use</span> (<span style="color:#bb60d5">$newValue</span>, <span style="color:#bb60d5">$property</span>) {
+        <span style="color:#60a0b0;font-style:italic">// Analogous to `get_property`.
+</span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#007020;font-weight:bold">if</span> (substr(<span style="color:#bb60d5">$key</span>, <span style="color:#666">-</span>strlen(<span style="color:#bb60d5">$property</span>)) <span style="color:#666">===</span> <span style="color:#bb60d5">$property</span>) {
+            <span style="color:#bb60d5">$value</span> <span style="color:#666">=</span> <span style="color:#bb60d5">$newValue</span>;
         }
     });
 }
 
-$class = new PhpPrivateAccess\MyClass();
-set_property($class, 'property', 'Im changed!');
+<span style="color:#bb60d5">$class</span> <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> PhpPrivateAccess\MyClass();
+set_property(<span style="color:#bb60d5">$class</span>, <span style="color:#4070a0">&#39;property&#39;</span>, <span style="color:#4070a0">&#39;Im changed!&#39;</span>);
 
-var_dump($class-&gt;getProperty());
-// =&gt; string(11) &quot;Im changed!&quot;
-</code></pre>
-
-<p>One note here: we&rsquo;re abusing undefined behaviour. There is no guarantee this
+var_dump(<span style="color:#bb60d5">$class</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">getProperty</span>());
+<span style="color:#60a0b0;font-style:italic">// =&gt; string(11) &#34;Im changed!&#34;
+</span></code></pre></div><p>One note here: we&rsquo;re abusing undefined behaviour. There is no guarantee this
 will continue to work in future PHP versions.</p>
-
 <h2 id="performance">Performance</h2>
-
 <p>So, we&rsquo;ve got a couple of ways to access and even mutate private properties. But
 what about performance? I&rsquo;ve put together some <a href="https://github.com/mark-gerarts/php-private-access-bench">benchmarking
 code</a> to test this. While not 100% accurate, it gives us an
 indication about the relative performance. The results for 1 million iterations:</p>
-
-<pre><code class="language-text">PHP version: PHP 7.2.4-1+b1
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">PHP version: PHP 7.2.4-1+b1
 Host: Linux Whirlpool 4.14.0-3-amd64 #1 SMP Debian 4.14.17-1 (2018-02-14) x86_64
 Iterations: 1000000
 
@@ -352,19 +288,14 @@ Iterations: 1000000
 | Closures   | 429ms |
 | Unserialze | 973ms |
 +------------|-------+
-</code></pre>
-
-<p>This shows us a couple of things:</p>
-
+</code></pre></div><p>This shows us a couple of things:</p>
 <ul>
 <li>Array casting is the fastest way to read private properties, and
 <code>array_walk</code> comes out as the fastest way to write to them.</li>
 <li>Reflection is ~4.5 times slower than using a simple getter or setter.</li>
 <li><code>unserialize</code> is <em>slow</em>, about 10 times slower than using a setter.</li>
 </ul>
-
 <h2 id="conclusion">Conclusion</h2>
-
 <p>If you&rsquo;re concerned about <strong>speed</strong>, cast your object to an array to read it,
 and use <code>array_walk</code> to write to it. It&rsquo;s really fast! However, if you&rsquo;re
 writing <strong>production code</strong>, consider if you <em>really</em> want to do this.
@@ -372,79 +303,28 @@ Properties are private for a reason! If you have a valid use case, go for
 reflection. Your code will be more readable and thus easier to maintain. Plus,
 its behaviour is well-defined and documented. The performance gain isn&rsquo;t worth
 sacrificing this for.</p>
-    </section>
-</article>
-
-<footer id="post-meta" class="clearfix">
-    
-    <img class="avatar" src="https://www.lambda-out-loud.com/images/lambda.png">
-    <div>
-        <span class="dark">Lambda Out Loud</span>
-        <span>A blog about all things code</span>
-    </div>
-    
-    <section id="sharing">
-        <a class="twitter" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fwww.lambda-out-loud.com%2fposts%2faccessing-private-properties-php%2f - Accessing%20private%20properties%20in%20PHP "><span class="icon-twitter"> tweet</span></a>
-
-<a class="facebook" href="#" onclick="
-    window.open(
-      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
-      'facebook-share-dialog',
-      'width=626,height=436');
-    return false;"><span class="icon-facebook-rect"> Share</span>
-</a>
 
     </section>
+    <footer class="post-footer">
+      <section class="tags post-meta">
+        Tagged
+        <a href="https://www.lambda-out-loud.com/tags/php/">php</a>
+          
+      </section>
+    </footer>
+  </article>
+</main>
+
+        <footer class="site-footer">
+  <section class="rss"><a class="subscribe-button icon-feed" href="/index.xml"></a></section>
+  
+  
+  <section class="copyright">&copy; 2020 Lambda Out Loud |
+  <a href="mailto:mark.gerarts+lambda@gmail.com">Contact</a></section>
 </footer>
 
 
 
-<ul id="post-list" class="archive readmore">
-    <h3>Read more</h3>
 
-    
-    
-    
-        <li>
-            <a href="/posts/clos-introduction/">Classes in Lisp: an introduction to CLOS<aside class="dates">Jun 6 2018</aside></a>
-        </li>
-    
-</ul>
-
-
-
-        <footer id="footer">
-    
-    <p class="small">
-    
-        © Copyright 2018 Lambda Out Loud | <a href="mailto:mark.gerarts@gmail.com">Contact</a>
-    
-    </p>
-</footer>
-
-    </section>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://www.lambda-out-loud.com/js/main.js"></script>
-<script src="https://www.lambda-out-loud.com/js/highlight.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-
-
-<script>
- var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
- if (dnt != "1" && dnt != "yes") {
-     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-     ga('create', ' UA-99354109-1', 'auto');
-     ga('set', 'anonymizeIp', true);
-     ga('send', 'pageview');
- } else {
-     console.debug("Respecting Do-Not-Track, not loading analytics. See https://www.paulfurley.com/google-analytics-dnt/");
- }
-</script>
-
-
-</body>
+    </body>
 </html>
