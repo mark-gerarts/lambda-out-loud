@@ -46,4 +46,10 @@
           console.debug("Respecting Do-Not-Track, not loading analytics.");
       }
     </script>
+
+    {{ if .Params.scriptNames }}
+      {{ range .Params.scriptNames }}
+      <script src="{{ . }}"></script>
+      {{ end }}
+    {{ end }}
 </head>

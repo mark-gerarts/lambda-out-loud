@@ -537,3 +537,8 @@ a.nav-home, a.nav-blog {
 	   font-size: 0.889rem;
 	}
 }
+
+elm-canvas canvas {
+    margin-left: 50%;
+    transform: translate(-50%);
+}
