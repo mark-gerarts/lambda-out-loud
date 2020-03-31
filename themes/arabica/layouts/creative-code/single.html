@@ -3,8 +3,10 @@
 <main class="content" role="main">
   <article class="post">
     <header class="post-header">
-      {{ with .Params.image }}
-        <img src="{{ . }}"></img>
+      {{ if not .Params.scriptNames }}
+        {{ with .Params.image }}
+          <img src="{{ . }}"></img>
+        {{ end }}
       {{ end }}
       <h1 class="post-title">{{ .Title }}</h1>
       <section class="post-meta">
