@@ -2,7 +2,7 @@
 	<header class="post-header">
     {{ if .Params.Image }}
       <a href="{{ .Page.RelPermalink }}">
-        <img src="{{ .Params.Image }}" />
+        <img src="{{ .Params.Image.file }}" {{ with .Params.Image.alt }}alt="{{ . }}"{{ end }}></img>
       </a>
     {{ end }}
 		<h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>

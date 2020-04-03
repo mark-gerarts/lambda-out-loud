@@ -1,5 +1,9 @@
 <footer class="site-footer">
-  <section class="rss"><a class="subscribe-button icon-feed" href="/index.xml"></a></section>
+  <section class="rss">
+    <a class="subscribe-button" href="/index.xml">
+      <i class="icon-feed"></i> RSS
+    </a>
+  </section>
   {{ with .Site.Params.twitter }}<section class="twitter"><a class="icon-twitter" href="https://twitter.com/{{ . }}"> {{ . }}</a></section>{{ end }}
   {{ with .Site.Params.facebook }}<section class="facebook"><a class="icon-facebook" href="https://www.facebook.com/{{ . }}"> {{ . }}</a></section>{{ end }}
   <section class="copyright">

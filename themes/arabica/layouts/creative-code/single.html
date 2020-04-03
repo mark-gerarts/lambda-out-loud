@@ -5,7 +5,7 @@
     <header class="post-header">
       {{ if not .Params.scriptNames }}
         {{ with .Params.image }}
-          <img src="{{ . }}"></img>
+          <img src="{{ .file }}" {{ with .alt }}alt="{{ .alt }}"{{ end }}></img>
         {{ end }}
       {{ end }}
       <h1 class="post-title">{{ .Title }}</h1>
