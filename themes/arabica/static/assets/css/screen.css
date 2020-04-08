@@ -96,19 +96,26 @@ code, tt {
 	font-weight: 500;
 }
 
-blockquote {
-	margin: 0 2em;
-	color: #9EABB3;
-}
 
-blockquote p {
-    margin: 0.8em 0;
+blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #9EABB3;
+    margin: 0 0 18px 0;
+    padding: 0.5em 10px;
     font-style: italic;
 }
 
-blockquote cite {
-	font-style: normal;
-	font-size: 0.889rem;
+blockquote:before {
+    color: #9EABB3;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+
+blockquote p {
+    display: inline;
 }
 
 hr {
