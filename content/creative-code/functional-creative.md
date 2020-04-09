@@ -40,13 +40,13 @@ Closely related to Haskell is **PureScript**. There's a [nice
 library][purescript-p5] that provides p5js bindings. The author even published a
 [boilerplate project][purescript-p5-starter] that includes hot reloading. It was
 pretty easy to get something small up and running, but I quickly ran into
-frustrations. I came across a [blog post][purescript-blog-post] that perfectly
-summarizes the experience:
+frustrations. [This blog post][purescript-blog-post] perfectly summarizes the
+experience:
 
 > [PureScript] is the hardest parts of Haskell combined with almost no
 > documentation.
 
-This lack of beginner-friendliness discouraged me from continuing to work with
+Its lack of beginner-friendliness discouraged me from continuing to work with
 PureScript.
 
 Another nice sketching library is **Clojure**'s [Quil]. It's intuitive, has good
@@ -68,30 +68,31 @@ I came across **Elm** multiple times, but I have to admit I initially dismissed
 it. I heard it was comparable to a simplified version of Haskell, and code
 samples I found online all had these weird formatting rules!
 
-Well, after trying it out and creating a small sketch using [elm-canvas] I was
-pleasantly surprised. The Elm community actively does its best to create a
-beginner friendly environment and it really shows. The compiler is on a whole
-new level of usability: error messages are super helpful and most of the times
-exactly tell you what to do to solve your errors. Once everything compiles, your
-code will probably do exactly what you want (barring tweaking a few numbers),
-which is very satisfying. The ecosystem is vast, with lots of quality libraries.
-Some libraries are not compatible with the newest Elm version, but oftentimes
-there are plenty alternatives to find. Documentation is easy to find. Not only
-for libraries, but especially surprising was the documentation around tooling.
+Well, after trying it out and creating a small sketch using [elm-canvas]
+combined with [elm-live] I was pleasantly surprised. The Elm community actively
+does its best to create a beginner friendly environment and it really shows. The
+compiler is on a whole new level of usability: error messages are super helpful
+and most of the times exactly tell you what to do to solve your errors. Once
+everything compiles, your code will probably do exactly what you want (barring
+tweaking a few numbers), which is very satisfying. The ecosystem is vast, with
+lots of quality libraries. Documentation is easy to find. Not only for
+libraries, but also for tooling and architecture decisions.
 
-elm-live
+Above all Elm is consistent. The formatter tool has no settings, meaning every
+codebase you come across wil look the same. Package documentation follows strict
+rules and is automatically generated. Even the [architecture][elm-architecture]
+is similar for every project.
 
+The language definitely has some flaws. Even just starting out I sometimes miss
+the power of Haskell. While there are a lot of libraries available, the strict
+version requirements of Elm means a lot of them are outdated. There are plenty
+of alternatives to be found, but it takes some googling.
 
-Stuff to like about Elm: consistency
+These flaws are only minor. I really enjoy creating sketches in Elm, and I'm
+looking forward to learning more about the language! A thing I like to do is to
+follow along with [Nature of Code][nature-of-code]. It's been a great learning
+experience so far; you can follow the progress [here][noc-elm]
 
-- Consistent formatting (not configurable!)
-- Consistent documentation
-- consistent architecture
-
-Some things not so nice:
-
-- *Too* simple at times, missing the power of Haskell
-- Stuck in the Elm architecture
 
 [p5js]: https://p5js.org/
 [TypeScript]: https://github.com/Gaweph/p5-typescript-starter
@@ -104,3 +105,7 @@ https://discourse.elm-lang.org/t/elm-canvas-examples/3464/7
 [quil]: http://www.quil.info/
 [trivial-gamekit]: https://github.com/borodust/trivial-gamekit
 [elm-canvas]: https://package.elm-lang.org/packages/joakin/elm-canvas/latest/
+[elm-live]: https://github.com/wking-io/elm-live
+[elm-architecture]: https://guide.elm-lang.org/architecture/
+[nature-of-code]: https://natureofcode.com/
+[noc-elm]: https://www.github.com/mark-gerarts/nature-of-code-elm
