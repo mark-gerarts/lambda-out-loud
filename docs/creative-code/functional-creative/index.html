@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    <title>
+      
+      Functional creative coding - Lambda Out Loud
+      
+		</title>
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" type="text/css" href="/assets/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+
+    
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Lato:100,100i,300,300i,400,400i,700,700i|Source+Code+Pro:300,400,500,700" rel="stylesheet">
+    
+
+    
+    
+
+
+    <script>
+      var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      if (dnt != "1" && dnt != "yes") {
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                                   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-99354109-1', 'auto');
+          ga('set', 'anonymizeIp', true);
+          ga('send', 'pageview');
+      } else {
+          console.debug("Respecting Do-Not-Track, not loading analytics.");
+      }
+    </script>
+
+    
+      
+      <script src="https://unpkg.com/elm-canvas@2.2/elm-canvas.js"></script>
+      
+      <script src="/static/js/magnetic-grid.min.js"></script>
+      
+    
+</head>
+
+    <body class="post-template">
+        <header class="main-header">
+	<div class="main-header-content">
+		<a href="/">
+			<img src="/static/img/lambda.png" alt="Logo Lambda Out Loud" />
+		</a>
+		<h2 class="blog-description">A blog about all things code</h2>
+	</div>
+
+	<div class="nav">
+    
+		
+      <a class="nav- " role="presentation" href="/posts/">Posts</a>
+		
+      <a class="nav- " role="presentation" href="/creative-code/">Creative code</a>
+		
+      <a class="nav- " role="presentation" href="/about/">About</a>
+		
+	</div>
+</header>
+
+        
+<main class="content" role="main">
+  <article class="post">
+    <header class="post-header">
+      
+      <h1 class="post-title">Functional creative coding</h1>
+      <section class="post-meta">
+        <time class="post-date">April 11, 2020</time>
+      </section>
+    </header>
+    <section class="post-content">
+      
+<div id="canvas"></div>
+<script>Elm.Main.init({node: document.getElementById('canvas')})</script>
+
+<p>Every once in a while I find myself returning to creative coding. Previously I
+used <a href="https://p5js.org/">p5js</a> with <a href="https://github.com/Gaweph/p5-typescript-starter">TypeScript</a> for this. Browsersync&rsquo;s hot reloading combined
+with the excellent Processing environment makes for a really pleasant developer
+experience.</p>
+<p>This time, however, I wanted to use creative coding as a way to learn and
+improve my knowledge of functional programming. There are a number of options
+out there:</p>
+<ul>
+<li><strong>Haskell</strong>&lsquo;s most promising library for creative coding seems to be <a href="http://gloss.ouroborus.net/">gloss</a>.
+It is stable and maintained, and has a few examples to get you started.
+Closely related is <a href="https://github.com/fgaz/shine">Shine</a>, which brings gloss to the browser.</li>
+<li><strong>PureScript</strong> has a <a href="https://github.com/derektmueller/purescript-p5">nice library</a> that provides p5js
+bindings. The author even published a <a href="https://github.com/derektmueller/purescript-p5-boilerplate">boilerplate
+project</a> that includes hot reloading.</li>
+<li>Another nice sketching library is <strong>Clojure</strong>&lsquo;s <a href="http://www.quil.info/">Quil</a>. It&rsquo;s intuitive, has
+good documentation, and is pleasant to work with. Coding is interactive, with
+changes being compiled quickly.</li>
+<li>For <strong>Common Lisp</strong> I can wholeheartedly recommend <a href="https://github.com/borodust/trivial-gamekit">trivial-gamekit</a>. It&rsquo;s
+technically a library to create 2D games, but it lends itself really well for
+creating sketches. You get an easy-to-use library combined with all the power
+Lisp has to offer.</li>
+<li>For a lightweight Haskell-like experience, there&rsquo;s <strong>Elm</strong>. <a href="https://package.elm-lang.org/packages/joakin/elm-canvas/latest/">Elm-canvas</a>
+provides a nice wrapper around the HTML5 canvas, which is enough to get you
+started.</li>
+</ul>
+<p>After briefly trying all these options I decided to spend some time to learn
+Elm. It&rsquo;s <em>extremely</em> beginner friendly, allowing me to pick up functional
+concepts at my own pace. <a href="https://github.com/wking-io/elm-live">Elm-live</a> provides hot reloading, which makes for a
+very satisfying development workflow combined with the always helpful compiler.
+Elm does lack some powerful and intriguing concepts that are present in Haskell
+and PureScript, so at some point I&rsquo;ll probably find myself wanting to dig deeper
+into those. But until then Elm has plenty of learning opportunities to offer.</p>
+<p>A thing I like to do when learning a language is to follow along with <a href="https://natureofcode.com/">Nature of
+Code</a>. Not only do you need to familiarize yourself with the
+syntax, it forces you to explore various libraries as well. It&rsquo;s been a very
+pleasant learning experience so far; you can follow the progress
+<a href="https://www.github.com/mark-gerarts/nature-of-code-elm">here</a>.</p>
+
+    </section>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+</main>
+
+        <footer class="site-footer">
+  <section class="rss">
+    <a class="subscribe-button" href="/index.xml">
+      <i class="icon-feed"></i> RSS
+    </a>
+  </section>
+  
+  
+  <section class="copyright">
+    &copy; 2020 Lambda Out Loud | <a href="mailto:mark.gerarts+lambda@gmail.com">Contact</a>
+  </section>
+</footer>
+
+
+
+    </body>
+</html>

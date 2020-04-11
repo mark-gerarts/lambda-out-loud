@@ -96,19 +96,26 @@ code, tt {
 	font-weight: 500;
 }
 
-blockquote {
-	margin: 0 2em;
-	color: #9EABB3;
-}
 
-blockquote p {
-    margin: 0.8em 0;
+blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #9EABB3;
+    margin: 0 0 18px 0;
+    padding: 0.5em 10px;
     font-style: italic;
 }
 
-blockquote cite {
-	font-style: normal;
-	font-size: 0.889rem;
+blockquote:before {
+    color: #9EABB3;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+
+blockquote p {
+    display: inline;
 }
 
 hr {
@@ -116,13 +123,6 @@ hr {
     height: 1px;
     border: 0;
     border-top: #9EABB3 1px solid;
-}
-
-/* Links */
-
-a.read-more, a.read-more:hover, a.read-more:visited {
-    color: #FC7E0F;	/* #DA1F15, #F17F33 */
-    text-decoration: none;
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -221,10 +221,6 @@ dl dd {
     line-height: 1;
 }
 
-.blog-title a {
-	font-color: inherit;
-}
-
 .blog-description {
     margin: 0;
     font-size: 0.889rem;
@@ -289,33 +285,6 @@ a.nav-home, a.nav-blog {
 .site-footer a:hover {
 	color: #9EABB3;
 }
-
-
-/* RSS - enable to replace the simple RSS icon with a round button */
-
-/*
-.site-footer .rss {
-	margin: 1rem auto;
-	width: 1.7rem;
-	height: 1.6rem;
-}
-
-.site-footer .rss a {
-	display: block;
-	height: 100%;
-	width: 100%;
-	margin-left: -.2rem;
-	padding: .35rem .1rem 0.05rem .2rem;
-	vertical-align: middle;
-	border: 1px #FC7E0F solid;
-	border-radius: 1.2rem;
-}
-
-.site-footer .rss a:hover {
-	color: #ffffff;
-	background: #FC7E0F;
-}
-*/
 
 /*	==========================================================================
 	Posts
@@ -536,4 +505,9 @@ a.nav-home, a.nav-blog {
 	.blog-description {
 	   font-size: 0.889rem;
 	}
+}
+
+elm-canvas canvas {
+    margin-left: 50%;
+    transform: translate(-50%);
 }

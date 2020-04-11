@@ -6,18 +6,18 @@
     <description>Recent content in Creative-codes on Lambda Out Loud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Mar 2020 11:07:30 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 11 Apr 2020 11:07:30 +0100</lastBuildDate>
     
 	<atom:link href="https://www.lambda-out-loud.com/creative-code/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Creative code posts</title>
-      <link>https://www.lambda-out-loud.com/creative-code/first-cc-post/</link>
-      <pubDate>Mon, 23 Mar 2020 11:07:30 +0100</pubDate>
+      <title>Functional creative coding</title>
+      <link>https://www.lambda-out-loud.com/creative-code/functional-creative/</link>
+      <pubDate>Sat, 11 Apr 2020 11:07:30 +0100</pubDate>
       
-      <guid>https://www.lambda-out-loud.com/creative-code/first-cc-post/</guid>
-      <description>Creative code posts coming soon!</description>
+      <guid>https://www.lambda-out-loud.com/creative-code/functional-creative/</guid>
+      <description>Exploring creative coding options in functional languages.</description>
     </item>
     
   </channel>

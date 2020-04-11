@@ -1,6 +1,6 @@
 ---
 title: "Functional creative coding"
-date: 2020-04-07T11:07:30+01:00
+date: 2020-04-11T11:07:30+01:00
 scriptNames:
     - https://unpkg.com/elm-canvas@2.2/elm-canvas.js
     - /static/js/magnetic-grid.min.js
@@ -19,79 +19,38 @@ experience.
 
 This time, however, I wanted to use creative coding as a way to learn and
 improve my knowledge of functional programming. There are a number of options
-out there, but few come close to p5js.
+out there:
 
-## The functional landscape
+- **Haskell**'s most promising library for creative coding seems to be [gloss].
+  It is stable and maintained, and has a few examples to get you started.
+  Closely related is [Shine], which brings gloss to the browser.
+- **PureScript** has a [nice library][purescript-p5] that provides p5js
+  bindings. The author even published a [boilerplate
+  project][purescript-p5-starter] that includes hot reloading.
+- Another nice sketching library is **Clojure**'s [Quil]. It's intuitive, has
+  good documentation, and is pleasant to work with. Coding is interactive, with
+  changes being compiled quickly.
+- For **Common Lisp** I can wholeheartedly recommend [trivial-gamekit]. It's
+  technically a library to create 2D games, but it lends itself really well for
+  creating sketches. You get an easy-to-use library combined with all the power
+  Lisp has to offer.
+- For a lightweight Haskell-like experience, there's **Elm**. [Elm-canvas]
+  provides a nice wrapper around the HTML5 canvas, which is enough to get you
+  started.
 
-**Haskell** is *the* functional programming language. It was my first choice
-because it feels as if you can never stop learning new concepts with Haskell.
-The most promising library for creative coding seems to be [gloss]. It is stable
-and maintained, and has a few examples to get you started. Closely related is
-[Shine], which brings gloss to the browser.
+After briefly trying all these options I decided to spend some time to learn
+Elm. It's *extremely* beginner friendly, allowing me to pick up functional
+concepts at my own pace. [Elm-live] provides hot reloading, which makes for a
+very satisfying development workflow combined with the always helpful compiler.
+Elm does lack some powerful and intriguing concepts that are present in Haskell
+and PureScript, so at some point I'll probably find myself wanting to dig deeper
+into those. But until then Elm has plenty of learning opportunities to offer.
 
-My biggest hurdle with Haskell is and has always been the tooling. Do I use
-Cabal or Stack? How do I properly set up my IDE? Where does Nix fit in the
-picture? Don't get me wrong - I absolutely love the language. I just want my
-development workflow to be as easy as possible so I can focus on creativity and
-learning functional paradigms. I will definitely give gloss a shot in the future
-though.
-
-Closely related to Haskell is **PureScript**. There's a [nice
-library][purescript-p5] that provides p5js bindings. The author even published a
-[boilerplate project][purescript-p5-starter] that includes hot reloading. It was
-pretty easy to get something small up and running, but I quickly ran into
-frustrations. [This blog post][purescript-blog-post] perfectly summarizes the
-experience:
-
-> [PureScript] is the hardest parts of Haskell combined with almost no
-> documentation.
-
-Its lack of beginner-friendliness discouraged me from continuing to work with
-PureScript.
-
-Another nice sketching library is **Clojure**'s [Quil]. It's intuitive, has good
-documentation, and is pleasant to work with. Coding is interactive, with changes
-being compiled quickly. However, types make me feel warm and fuzzy inside, and
-this is what I'm missing with Clojure.
-
-If you're into Lispy languages, I can wholeheartedly recommend
-[trivial-gamekit], a library to create 2D games in **Common Lisp**. It's main
-goal is to be easy to use, and it really does succeed in this. It will
-especially feel familiar if you're coming from Processing. On top of being easy
-to learn, it comes with all the power of Lisp: macros, a fantastic REPL, live
-editing, parentheses, and almost 40 years worth of history. As much as I love
-Lisp though, I was on the lookout for a language with a strong type system.
-
-## Elm
-
-I came across **Elm** multiple times, but I have to admit I initially dismissed
-it. I heard it was comparable to a simplified version of Haskell, and code
-samples I found online all had these weird formatting rules!
-
-Well, after trying it out and creating a small sketch using [elm-canvas]
-combined with [elm-live] I was pleasantly surprised. The Elm community actively
-does its best to create a beginner friendly environment and it really shows. The
-compiler is on a whole new level of usability: error messages are super helpful
-and most of the times exactly tell you what to do to solve your errors. Once
-everything compiles, your code will probably do exactly what you want (barring
-tweaking a few numbers), which is very satisfying. The ecosystem is vast, with
-lots of quality libraries. Documentation is easy to find. Not only for
-libraries, but also for tooling and architecture decisions.
-
-Above all Elm is consistent. The formatter tool has no settings, meaning every
-codebase you come across wil look the same. Package documentation follows strict
-rules and is automatically generated. Even the [architecture][elm-architecture]
-is similar for every project.
-
-The language definitely has some flaws. Even just starting out I sometimes miss
-the power of Haskell. While there are a lot of libraries available, the strict
-version requirements of Elm means a lot of them are outdated. There are plenty
-of alternatives to be found, but it takes some googling.
-
-These flaws are only minor. I really enjoy creating sketches in Elm, and I'm
-looking forward to learning more about the language! A thing I like to do is to
-follow along with [Nature of Code][nature-of-code]. It's been a great learning
-experience so far; you can follow the progress [here][noc-elm]
+A thing I like to do when learning a language is to follow along with [Nature of
+Code][nature-of-code]. Not only do you need to familiarize yourself with the
+syntax, it forces you to explore various libraries as well. It's been a very
+pleasant learning experience so far; you can follow the progress
+[here][noc-elm].
 
 
 [p5js]: https://p5js.org/
@@ -100,12 +59,9 @@ experience so far; you can follow the progress [here][noc-elm]
 [Shine]: https://github.com/fgaz/shine
 [purescript-p5]: https://github.com/derektmueller/purescript-p5
 [purescript-p5-starter]: https://github.com/derektmueller/purescript-p5-boilerplate
-[purescript-blog-post]:
-https://discourse.elm-lang.org/t/elm-canvas-examples/3464/7
 [quil]: http://www.quil.info/
 [trivial-gamekit]: https://github.com/borodust/trivial-gamekit
-[elm-canvas]: https://package.elm-lang.org/packages/joakin/elm-canvas/latest/
+[Elm-canvas]: https://package.elm-lang.org/packages/joakin/elm-canvas/latest/
 [elm-live]: https://github.com/wking-io/elm-live
-[elm-architecture]: https://guide.elm-lang.org/architecture/
 [nature-of-code]: https://natureofcode.com/
 [noc-elm]: https://www.github.com/mark-gerarts/nature-of-code-elm
