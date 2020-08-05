@@ -52,7 +52,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font-size: 1.802rem;
+    font-size: 1.802rem;
+    margin-top: 0;
 }
 
 h2 {
@@ -201,7 +202,6 @@ dl dd {
     position: relative;
     width: 100%;
     padding: 2rem 0;
-    margin-bottom: 1rem;
     text-align: center;
     vertical-align: middle;
     overflow: hidden;
@@ -233,7 +233,11 @@ dl dd {
 
 /*	==========================================================================
 	Navigation
-	========================================================================== */
+    ========================================================================== */
+
+a.read-more {
+    display: block;
+}
 
 .nav {
 	margin-top: 1rem;
@@ -251,11 +255,12 @@ dl dd {
 }
 
 .nav a:hover {
-	color: #FC7E0F;
+    text-decoration: underline;
 }
 
 a.nav-current {
-	color: #FC7E0F;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 a.nav-home, a.nav-blog {
