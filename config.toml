@@ -4,6 +4,11 @@ title = "Lambda Out Loud"
 paginate = 5
 theme = "arabica"
 
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  grimoire = "grimoire"
+
 [params]
     description = "A blog about all things code"
     mainSections = ["posts", "creative-code"]
@@ -16,10 +21,10 @@ theme = "arabica"
         weight = -20
 
     [[menu.main]]
-        identifier = "creative-code"
-        name = "Creative code"
-        url = "/creative-code/"
-        weight = -10
+        identifier = "grimoire"
+        name = "Grimoire"
+        url = "/grimoire/"
+        weight = -5
 
 [markup]
   [markup.highlight]

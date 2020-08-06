@@ -4,9 +4,6 @@ date: 2020-04-11T11:07:30+01:00
 scriptNames:
     - https://unpkg.com/elm-canvas@2.2/elm-canvas.js
     - /static/js/magnetic-grid.min.js
-image:
-    file: "/static/img/magnetic-grid.png"
-    alt: "Magnetic grid sketch"
 summary: "Exploring creative coding options in functional languages."
 ---
 

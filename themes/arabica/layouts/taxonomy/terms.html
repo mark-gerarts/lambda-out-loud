@@ -3,11 +3,19 @@
 {{ define "main" }}
 {{ $paginator := .Paginate .Pages (index .Site.Params "archive-paginate" | default 10) }}
 <main class="content" role="main">
-    <h1>List of tags</h1>
+    <h1>{{ .Title }}</h1>
+
     <ul>
         {{ range .Data.Terms.Alphabetical }}
-                <li><a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a></li>
+                <li>
+                    <a href="{{ .Page.Permalink }}">
+                        {{ .Page.Title }}
+                    </a>
+                    ({{ .Count }})
+                </li>
         {{ end }}
     </ul>
+
+    {{ .Content }}
 </main>
 {{ end }}
