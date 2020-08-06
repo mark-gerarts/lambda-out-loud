@@ -223,12 +223,11 @@ dl dd {
 
 .blog-description {
     margin: 0;
-    font-size: 0.889rem;
+    font-size: 1rem;
     font-family: "Lato", sans-serif;
-    text-transform: uppercase;
     letter-spacing: 0;
-    color: #9EABB3;
     font-weight: 300;
+    font-style: italic;
 }
 
 /*	==========================================================================
@@ -250,21 +249,21 @@ a.read-more {
 
 .nav a {
 	margin: 0 0.5rem;
-	color: #9EABB3;
-	text-decoration: none;
+    text-decoration: none;
+    border-bottom: 1px solid#3A4145;
 }
 
 .nav a:hover {
-    text-decoration: underline;
+    border-bottom: 2px solid #3A4145;
+}
+
+.nav a:visited {
+    color: inherit;
 }
 
 a.nav-current {
     font-weight: bold;
-    text-decoration: underline;
-}
-
-a.nav-home, a.nav-blog {
-	color: #9EABB3;
+    border-bottom: 2px solid #3A4145;
 }
 
 /*	==========================================================================
@@ -282,13 +281,9 @@ a.nav-home, a.nav-blog {
     font-size: .79rem;
 }
 
-.site-footer a {
+a.subscribe-button {
 	color: #FC7E0F;
 	text-decoration: none;
-}
-
-.site-footer a:hover {
-	color: #9EABB3;
 }
 
 /*	==========================================================================

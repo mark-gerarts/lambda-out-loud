@@ -21,12 +21,6 @@ theme = "arabica"
         weight = -20
 
     [[menu.main]]
-        identifier = "creative-code"
-        name = "Creative code"
-        url = "/creative-code/"
-        weight = -10
-
-    [[menu.main]]
         identifier = "grimoire"
         name = "Grimoire"
         url = "/grimoire/"
