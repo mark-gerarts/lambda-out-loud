@@ -52,7 +52,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font-size: 1.802rem;
+    font-size: 1.802rem;
+    margin-top: 0;
 }
 
 h2 {
@@ -201,7 +202,6 @@ dl dd {
     position: relative;
     width: 100%;
     padding: 2rem 0;
-    margin-bottom: 1rem;
     text-align: center;
     vertical-align: middle;
     overflow: hidden;
@@ -223,17 +223,20 @@ dl dd {
 
 .blog-description {
     margin: 0;
-    font-size: 0.889rem;
+    font-size: 1rem;
     font-family: "Lato", sans-serif;
-    text-transform: uppercase;
     letter-spacing: 0;
-    color: #9EABB3;
     font-weight: 300;
+    font-style: italic;
 }
 
 /*	==========================================================================
 	Navigation
-	========================================================================== */
+    ========================================================================== */
+
+a.read-more {
+    display: block;
+}
 
 .nav {
 	margin-top: 1rem;
@@ -246,20 +249,22 @@ dl dd {
 
 .nav a {
 	margin: 0 0.5rem;
-	color: #9EABB3;
-	text-decoration: none;
+    text-decoration: none;
+    border-bottom: 1px solid#3A4145;
+    color: inherit;
 }
 
 .nav a:hover {
-	color: #FC7E0F;
+    border-bottom: 2px solid #3A4145;
+}
+
+.nav a:visited {
+    color: inherit;
 }
 
 a.nav-current {
-	color: #FC7E0F;
-}
-
-a.nav-home, a.nav-blog {
-	color: #9EABB3;
+    font-weight: bold;
+    border-bottom: 2px solid #3A4145;
 }
 
 /*	==========================================================================
@@ -277,13 +282,9 @@ a.nav-home, a.nav-blog {
     font-size: .79rem;
 }
 
-.site-footer a {
+a.subscribe-button {
 	color: #FC7E0F;
 	text-decoration: none;
-}
-
-.site-footer a:hover {
-	color: #9EABB3;
 }
 
 /*	==========================================================================

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    <title>
+      
+      Stash Pull Pop - Lambda Out Loud
+      
+		</title>
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" type="text/css" href="/assets/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+
+    
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Lato:100,100i,300,300i,400,400i,700,700i|Source+Code+Pro:300,400,500,700" rel="stylesheet">
+    
+
+    
+    
+
+
+    <script>
+      var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      if (dnt != "1" && dnt != "yes") {
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                                   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-99354109-1', 'auto');
+          ga('set', 'anonymizeIp', true);
+          ga('send', 'pageview');
+      } else {
+          console.debug("Respecting Do-Not-Track, not loading analytics.");
+      }
+    </script>
+
+    
+</head>
+
+    <body class="post-template">
+        <header class="main-header">
+	<div class="main-header-content">
+		<a href="/">
+			<img src="/static/img/lambda.png" alt="Logo Lambda Out Loud" />
+		</a>
+		<h2 class="blog-description">A blog about all things code</h2>
+	</div>
+
+	<div class="nav">
+    
+		
+      <a class="nav- " role="presentation" href="/posts/">Posts</a>
+		
+      <a class="nav- " role="presentation" href="/grimoire/">Grimoire</a>
+		
+      <a class="nav- " role="presentation" href="/about/">About</a>
+		
+	</div>
+</header>
+
+        
+<main class="content" role="main">
+  <article class="post">
+    <header class="post-header">
+      
+      <h1 class="post-title">Stash Pull Pop</h1>
+      <section class="post-meta">
+        <time class="post-date">August 05, 2020</time>
+      </section>
+    </header>
+    <section class="post-content">
+      <p>If you happen to work on the same branch with multiple people, it can be
+cumbersome to pull from upstream if you have unstaged changes.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git pull --rebase
+error: cannot pull with rebase: You have unstaged changes.
+error: please commit or stash them.
+</code></pre></div><p>For this I use a shell script that does the following:</p>
+<ul>
+<li>If there are no unstaged changes, simply pull from upstream</li>
+<li>Otherwise, first stash the changes and pop them afterwards</li>
+</ul>
+<p>The script (e.g. <code>~/scripts/spp.sh</code>):</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#007020">#!/bin/bash
+</span><span style="color:#007020"></span>
+<span style="color:#60a0b0;font-style:italic"># This script will stash local changes before pulling, if there</span>
+<span style="color:#60a0b0;font-style:italic"># are any.</span>
+<span style="color:#007020;font-weight:bold">if</span> <span style="color:#666">[[</span> <span style="color:#4070a0">`</span>git status --porcelain --untracked-files<span style="color:#666">=</span>no<span style="color:#4070a0">`</span> <span style="color:#666">]]</span>; <span style="color:#007020;font-weight:bold">then</span>
+  git stash <span style="color:#666">&amp;&amp;</span> git pull --rebase <span style="color:#666">&amp;&amp;</span> git stash pop
+<span style="color:#007020;font-weight:bold">else</span>
+  git pull --rebase
+<span style="color:#007020;font-weight:bold">fi</span>
+</code></pre></div><p>Combined with an alias:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#60a0b0;font-style:italic"># ~/.bash_aliases</span>
+<span style="color:#007020">alias</span> <span style="color:#bb60d5">spp</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;~/scripts/.spp.sh&#34;</span>
+</code></pre></div>
+    </section>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+</main>
+
+        <footer class="site-footer">
+  <section class="rss">
+    <a class="subscribe-button" href="/index.xml">
+      <i class="icon-feed"></i> RSS
+    </a>
+  </section>
+  
+  
+  <section class="copyright">
+    &copy; 2020 Lambda Out Loud | <a href="mailto:mark.gerarts+lambda@gmail.com">Contact</a>
+  </section>
+</footer>
+
+
+
+    </body>
+</html>

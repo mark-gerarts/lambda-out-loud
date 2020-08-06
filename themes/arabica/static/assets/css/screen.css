@@ -251,6 +251,7 @@ a.read-more {
 	margin: 0 0.5rem;
     text-decoration: none;
     border-bottom: 1px solid#3A4145;
+    color: inherit;
 }
 
 .nav a:hover {
