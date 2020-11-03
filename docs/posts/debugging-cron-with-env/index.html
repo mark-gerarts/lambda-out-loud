@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    <title>
+      
+      Debugging cron with `env` - Lambda Out Loud
+      
+		</title>
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" type="text/css" href="/assets/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+
+    
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Lato:100,100i,300,300i,400,400i,700,700i|Source+Code+Pro:300,400,500,700" rel="stylesheet">
+    
+
+    
+    
+
+
+    <script>
+      var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      if (dnt != "1" && dnt != "yes") {
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                                   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-99354109-1', 'auto');
+          ga('set', 'anonymizeIp', true);
+          ga('send', 'pageview');
+      } else {
+          console.debug("Respecting Do-Not-Track, not loading analytics.");
+      }
+    </script>
+
+    
+</head>
+
+    <body class="post-template">
+        <header class="main-header">
+	<div class="main-header-content">
+		<a href="/">
+			<img src="/static/img/lambda.png" alt="Logo Lambda Out Loud" />
+		</a>
+		<h2 class="blog-description">A blog about all things code</h2>
+	</div>
+
+	<div class="nav">
+    
+		
+      <a class="nav- " role="presentation" href="/posts/">Posts</a>
+		
+      <a class="nav- " role="presentation" href="/grimoire/">Grimoire</a>
+		
+      <a class="nav- " role="presentation" href="/about/">About</a>
+		
+	</div>
+</header>
+
+        
+<main class="content" role="main">
+  <article class="post">
+    <header class="post-header">
+      
+      <h1 class="post-title">Debugging cron with `env`</h1>
+      <section class="post-meta">
+        <time class="post-date">November 03, 2020</time>
+      </section>
+    </header>
+    <section class="post-content">
+      <p>Sometimes cronjobs don&rsquo;t work as expected. One of the reasons for this is that
+cron commands run with a different set of environment variables. While you can
+redirect a script&rsquo;s output to a file in the crontab, I find it easier to run the
+command myself and see the output directly.</p>
+<h2 id="quick--easy">Quick &amp; easy</h2>
+<p>The quick and easy way to simulate a cron command is to use <code>env -i</code>, which
+creates a completely empty environment:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ env -i &lt;your <span style="color:#007020">command</span> to run&gt;
+</code></pre></div><p>To illustrate the difference:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ printenv | wc -l
+<span style="color:#40a070">54</span>
+$ env -i printenv | wc -l
+<span style="color:#40a070">0</span>
+</code></pre></div><h2 id="a-more-precise-environment">A more precise environment</h2>
+<p><code>env -i</code> will be sufficient for most cases. However, cron&rsquo;s environment isn&rsquo;t
+<em>completely</em> empty. If you want to run a command with exactly the same
+parameters, you&rsquo;ll first have to export the parameters to a file in a cronjob.
+For example:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">* * * * * /usr/bin/env | sort &gt; /tmp/cron_env_vars
+</code></pre></div><p>You&rsquo;ll have to wait a minute for this, unfortunately. If you know a better way,
+let me know!</p>
+<p>Once the file is created, you can use <code>env</code> again to load the parameters from
+it:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ env -i <span style="color:#007020;font-weight:bold">$(</span>cat /tmp/cron_env_vars | xargs<span style="color:#007020;font-weight:bold">)</span> &lt;your <span style="color:#007020">command</span> to run&gt;
+</code></pre></div><p>Using <code>printenv</code> again to illustrate this:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ env -i <span style="color:#007020;font-weight:bold">$(</span>cat /tmp/cron_env_vars | xargs<span style="color:#007020;font-weight:bold">)</span> printenv
+<span style="color:#bb60d5">HOME</span><span style="color:#666">=</span>/home/mark
+<span style="color:#bb60d5">LANG</span><span style="color:#666">=</span>en_US.UTF-8
+<span style="color:#bb60d5">LANGUAGE</span><span style="color:#666">=</span>en_GB:en
+<span style="color:#bb60d5">LOGNAME</span><span style="color:#666">=</span>mark
+<span style="color:#bb60d5">PATH</span><span style="color:#666">=</span>/usr/bin:/bin
+<span style="color:#bb60d5">PWD</span><span style="color:#666">=</span>/home/mark
+<span style="color:#bb60d5">SHELL</span><span style="color:#666">=</span>/bin/sh
+</code></pre></div>
+    </section>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+</main>
+
+        <footer class="site-footer">
+  <section class="rss">
+    <a class="subscribe-button" href="/index.xml">
+      <i class="icon-feed"></i> RSS
+    </a>
+  </section>
+  
+  
+  <section class="copyright">
+    &copy; 2020 Lambda Out Loud | <a href="mailto:mark.gerarts+lambda@gmail.com">Contact</a>
+  </section>
+</footer>
+
+
+
+    </body>
+</html>

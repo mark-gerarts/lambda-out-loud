@@ -3,22 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.lambda-out-loud.com/grimoire/git/</loc>
-    <lastmod>2020-08-05T13:40:22+02:00</lastmod>
+    <loc>https://www.lambda-out-loud.com/posts/debugging-cron-with-env/</loc>
+    <lastmod>2020-11-03T11:42:10+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.lambda-out-loud.com/grimoire/</loc>
-    <lastmod>2020-08-05T13:40:22+02:00</lastmod>
+    <lastmod>2020-11-03T11:42:10+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.lambda-out-loud.com/</loc>
-    <lastmod>2020-08-05T13:40:22+02:00</lastmod>
+    <lastmod>2020-11-03T11:42:10+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.lambda-out-loud.com/grimoire/linux/</loc>
+    <lastmod>2020-11-03T11:42:10+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.lambda-out-loud.com/posts/</loc>
+    <lastmod>2020-11-03T11:42:10+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.lambda-out-loud.com/grimoire/git/</loc>
     <lastmod>2020-08-05T13:40:22+02:00</lastmod>
   </url>
   
@@ -80,10 +90,6 @@
   <url>
     <loc>https://www.lambda-out-loud.com/categories/tutorials/</loc>
     <lastmod>2018-06-06T18:58:01+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.lambda-out-loud.com/grimoire/linux/</loc>
   </url>
   
 </urlset>

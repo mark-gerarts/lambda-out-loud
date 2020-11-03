@@ -1,7 +1,6 @@
 ---
 title: "Debugging cron with `env`"
 date: 2020-11-03T11:42:10+01:00
-draft: true
 summary: "Using the `env` command, we can simulate the environment cron runs in."
 grimoire:
     - Linux

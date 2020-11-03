@@ -5,6 +5,16 @@
     <link>https://www.lambda-out-loud.com/grimoire/linux/</link>
     <description>Recent content in Linux on Lambda Out Loud</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://www.lambda-out-loud.com/grimoire/linux/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Nov 2020 11:42:10 +0100</lastBuildDate><atom:link href="https://www.lambda-out-loud.com/grimoire/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debugging cron with `env`</title>
+      <link>https://www.lambda-out-loud.com/posts/debugging-cron-with-env/</link>
+      <pubDate>Tue, 03 Nov 2020 11:42:10 +0100</pubDate>
+      
+      <guid>https://www.lambda-out-loud.com/posts/debugging-cron-with-env/</guid>
+      <description>Using the &lt;code&gt;env&lt;/code&gt; command, we can simulate the environment cron runs in.</description>
+    </item>
+    
   </channel>
 </rss>
