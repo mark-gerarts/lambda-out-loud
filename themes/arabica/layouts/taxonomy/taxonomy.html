@@ -14,6 +14,10 @@
     {{ end }}
   {{ end }}
 
+  {{ if .Content }}
+    {{ .Content }}
+  {{ end }}
+
 	<div class="extra-pagination">
 	    {{ partial "pagination.html" .}}
 	</div>

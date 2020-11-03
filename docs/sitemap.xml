@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>https://www.lambda-out-loud.com/</loc>
+    <lastmod>2020-08-05T13:40:22+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.lambda-out-loud.com/posts/</loc>
     <lastmod>2020-08-05T13:40:22+02:00</lastmod>
   </url>
@@ -34,11 +39,6 @@
   
   <url>
     <loc>https://www.lambda-out-loud.com/about/</loc>
-    <lastmod>2020-03-23T10:57:49+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.lambda-out-loud.com/</loc>
     <lastmod>2020-03-23T10:57:49+01:00</lastmod>
   </url>
   
@@ -80,6 +80,10 @@
   <url>
     <loc>https://www.lambda-out-loud.com/categories/tutorials/</loc>
     <lastmod>2018-06-06T18:58:01+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.lambda-out-loud.com/grimoire/linux/</loc>
   </url>
   
 </urlset>

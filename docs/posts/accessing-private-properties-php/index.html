@@ -86,7 +86,7 @@ methods, interfaces, and so on. Of special interest to us is the
 the wonderful method <code>setAccesible</code>.</p>
 <p>In our code samples, we&rsquo;re going to try to retrieve and change the property
 <code>$property</code> of the following class:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#666">&lt;?</span>php
 
 <span style="color:#007020;font-weight:bold">namespace</span> PhpPrivateAccess;
 
@@ -106,7 +106,7 @@ the wonderful method <code>setAccesible</code>.</p>
 }
 </code></pre></div><p>Using reflection, we can access the property using a clean API. Both reading the
 property and changing it are possible after a call to <code>setAccessible</code>.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#666">&lt;?</span>php
 
 <span style="color:#007020;font-weight:bold">use</span> PhpPrivateAccess\MyClass;
 
@@ -130,7 +130,7 @@ read and write private properties. Marco Pivetta explains this in detail in <a h
 blog post</a>.</p>
 <p>The idea is to create a getter using a closure, and then bind it to the class
 you want to access.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#666">&lt;?</span>php
 
 <span style="color:#007020;font-weight:bold">use</span> PhpPrivateAccess\MyClass;
 
@@ -146,7 +146,7 @@ var_dump(<span style="color:#bb60d5">$closure</span>(<span style="color:#bb60d5"
 </span></code></pre></div><p>While this is pretty cool, it gets even better. You can retrieve the private
 property <em>by reference</em>. So not only will you be able to retrieve its value,
 you&rsquo;ll be able to change it as well. Neat!</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#666">&lt;?</span>php
 
 <span style="color:#007020;font-weight:bold">use</span> PhpPrivateAccess\MyClass;
 
@@ -166,7 +166,7 @@ var_dump(<span style="color:#bb60d5">$class</span><span style="color:#666">-&gt;
 <p>As a last option, we&rsquo;ll abuse PHP&rsquo;s implementation of casting an object to an
 array. When you cast an object to an array, <em>all</em> properties get exposed. Let&rsquo;s
 see it in action:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#666">&lt;?</span>php
 
 <span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">Visibility</span>
 {
@@ -194,7 +194,7 @@ visibility scope from the property name.</p>
 <p>While this is technically undefined behaviour, a <a href="https://github.com/php/php-src/blob/master/tests/classes/array_conversion_keys.phpt">test case</a>
 has been created to ensure it doesn&rsquo;t get changed. Knowing this, we can create
 a way to access any property we want.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#666">&lt;?</span>php
 
 <span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">get_property</span>(object <span style="color:#bb60d5">$object</span>, string <span style="color:#bb60d5">$property</span>) {
     <span style="color:#bb60d5">$array</span> <span style="color:#666">=</span> (<span style="color:#007020;font-weight:bold">array</span>) <span style="color:#bb60d5">$object</span>;
@@ -213,7 +213,7 @@ var_dump(get_property(<span style="color:#bb60d5">$class</span>, <span style="co
 is to use <code>unserialize</code>. When you <code>serialize</code> an object, the string
 representation is basically that of a serialized array, prefixed with the class
 name. A comparison:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#666">&lt;?</span>php
 
 <span style="color:#bb60d5">$class</span> <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> PhpPrivateAccess\MyClass();
 var_dump(serialize((<span style="color:#007020;font-weight:bold">array</span>) <span style="color:#bb60d5">$class</span>));
@@ -223,19 +223,19 @@ var_dump(serialize(<span style="color:#bb60d5">$class</span>));
 <span style="color:#60a0b0;font-style:italic">// =&gt; string(97) &#34;O:24:&#34;PhpPrivateAccess\MyClass&#34;:1:{s:34:&#34;PhpPrivateAccess\MyClassproperty&#34;;s:11:&#34;Im private!&#34;;}&#34;
 </span></code></pre></div><p>Knowing this, we can fabricate a string to pass to <code>unserialize</code>. The result
 will be an new object with our new value for its property.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#666">&lt;?</span>php
 
 <span style="color:#bb60d5">$class</span> <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">new</span> PhpPrivateAccess\MyClass();
 
 <span style="color:#bb60d5">$array</span> <span style="color:#666">=</span> (<span style="color:#007020;font-weight:bold">array</span>) <span style="color:#bb60d5">$class</span>;
 <span style="color:#bb60d5">$className</span> <span style="color:#666">=</span> get_class(<span style="color:#bb60d5">$class</span>);
-<span style="color:#bb60d5">$array</span>[<span style="color:#4070a0">&#34;</span><span style="color:#4070a0;font-weight:bold">\0</span><span style="color:#70a0d0;font-style:italic">{</span>$className<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0;font-weight:bold">\0</span><span style="color:#4070a0">property&#34;</span>] <span style="color:#666">=</span> <span style="color:#4070a0">&#39;changed&#39;</span>;
+<span style="color:#bb60d5">$array</span>[<span style="color:#4070a0">&#34;</span><span style="color:#4070a0;font-weight:bold">\0</span><span style="color:#70a0d0;font-style:italic">{</span><span style="color:#bb60d5">$className</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0;font-weight:bold">\0</span><span style="color:#4070a0">property&#34;</span>] <span style="color:#666">=</span> <span style="color:#4070a0">&#39;changed&#39;</span>;
 
 <span style="color:#bb60d5">$classLength</span> <span style="color:#666">=</span> strlen(<span style="color:#bb60d5">$className</span>);
 <span style="color:#bb60d5">$serializedArray</span> <span style="color:#666">=</span> serialize(<span style="color:#bb60d5">$array</span>);
 <span style="color:#bb60d5">$serializedArray</span> <span style="color:#666">=</span> substr(<span style="color:#bb60d5">$serializedArray</span>, <span style="color:#40a070">1</span>);
 
-<span style="color:#bb60d5">$serializedClass</span> <span style="color:#666">=</span> <span style="color:#4070a0">&#34;O:</span><span style="color:#70a0d0;font-style:italic">{</span>$classLength<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">:</span><span style="color:#4070a0;font-weight:bold">\&#34;</span><span style="color:#70a0d0;font-style:italic">{</span>$className<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0;font-weight:bold">\&#34;</span><span style="color:#70a0d0;font-style:italic">{</span>$serializedArray<span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&#34;</span>;
+<span style="color:#bb60d5">$serializedClass</span> <span style="color:#666">=</span> <span style="color:#4070a0">&#34;O:</span><span style="color:#70a0d0;font-style:italic">{</span><span style="color:#bb60d5">$classLength</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">:</span><span style="color:#4070a0;font-weight:bold">\&#34;</span><span style="color:#70a0d0;font-style:italic">{</span><span style="color:#bb60d5">$className</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0;font-weight:bold">\&#34;</span><span style="color:#70a0d0;font-style:italic">{</span><span style="color:#bb60d5">$serializedArray</span><span style="color:#70a0d0;font-style:italic">}</span><span style="color:#4070a0">&#34;</span>;
 <span style="color:#bb60d5">$result</span> <span style="color:#666">=</span> unserialize(<span style="color:#bb60d5">$serializedClass</span>);
 var_dump(<span style="color:#bb60d5">$result</span><span style="color:#666">-&gt;</span><span style="color:#4070a0">getProperty</span>());
 <span style="color:#60a0b0;font-style:italic">// =&gt; string(10) &#34;Im changed&#34;
@@ -249,7 +249,7 @@ all, but how is this going to solve our problem? Well, apparently you can pass
 an object to <code>array_walk</code> without PHP complaining. It will implicitly get cast
 to an array, <strong>but</strong>, the values can be retrieved by reference. Interesting! We
 now know enough to set properties as well.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020">&lt;?php</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#666">&lt;?</span>php
 
 <span style="color:#007020;font-weight:bold">function</span> <span style="color:#06287e">set_property</span>(object <span style="color:#bb60d5">$object</span>, string <span style="color:#bb60d5">$property</span>, <span style="color:#bb60d5">$newValue</span>)<span style="color:#666">:</span> void {
     array_walk(<span style="color:#bb60d5">$object</span>, <span style="color:#007020;font-weight:bold">function</span> (<span style="color:#666">&amp;</span><span style="color:#bb60d5">$value</span>, <span style="color:#bb60d5">$key</span>) <span style="color:#007020;font-weight:bold">use</span> (<span style="color:#bb60d5">$newValue</span>, <span style="color:#bb60d5">$property</span>) {

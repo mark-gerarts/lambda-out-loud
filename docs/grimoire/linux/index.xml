@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Lambda Out Loud</title>
+    <link>https://www.lambda-out-loud.com/grimoire/linux/</link>
+    <description>Recent content in Linux on Lambda Out Loud</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://www.lambda-out-loud.com/grimoire/linux/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
