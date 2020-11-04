@@ -17,9 +17,13 @@
         {{ end }}
       </h1>
 
-    {{ if .Content }}
-      <section class="post-meta">{{ .Content }}</section>
-    {{ end }}
+      {{ if .Content }}
+        <section class="post-meta">{{ .Content }}</section>
+      {{ end }}
+
+      {{ if eq .Data.Plural "tags" }}
+        <section class="post-footer"><a href="/tags">View all tags</a></section>
+      {{ end }}
     </header>
   {{ end }}
 
@@ -30,5 +34,6 @@
   {{ .Render "summary"  }}
   {{ end  }}
   {{ partial "pagination.html" .  }}
+
 </main>
 {{ end }}
