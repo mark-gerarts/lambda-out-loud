@@ -179,7 +179,7 @@ dl dd {
 .main-header {
     position: relative;
     width: 100%;
-    padding: 2rem 0;
+    padding-top: 2rem;
     text-align: center;
     vertical-align: middle;
     overflow: hidden;
@@ -274,7 +274,7 @@ a.subscribe-button {
 }
 
 .post-header {
-    margin: 4em 0;
+    margin: 5em 0;
     text-align: center;
 }
 

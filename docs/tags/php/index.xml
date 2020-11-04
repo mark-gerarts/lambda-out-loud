@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>php on Lambda Out Loud</title>
+    <title>PHP on Lambda Out Loud</title>
     <link>https://www.lambda-out-loud.com/tags/php/</link>
-    <description>Recent content in php on Lambda Out Loud</description>
+    <description>Recent content in PHP on Lambda Out Loud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 09 Jun 2018 19:41:36 +0200</lastBuildDate>
