@@ -5,17 +5,22 @@
 {{ define "main" }}
 {{ $paginator := .Paginate .Pages (index .Site.Params "archive-paginate" | default 10) }}
 <main class="content" role="main">
-  {{ if not $paginator.HasPrev }}
-    {{ if eq .Data.Plural "tags" }}
-      <h1 class="tag-title">All posts tagged with "{{ .Title }}"</h1>
-    {{ end }}
-    {{ if eq .Data.Plural "grimoire" }}
-      <h1 class="tag-title">{{ .Title }} grimoire</h1>
-    {{ end }}
-  {{ end }}
 
-  {{ if .Content }}
-    {{ .Content }}
+  {{ if not $paginator.HasPrev }}
+    <header class="post-header">
+      <h1 class="post-title">
+        {{ if eq .Data.Plural "tags" }}
+          All posts tagged with "{{ .Title }}"
+        {{ end }}
+        {{ if eq .Data.Plural "grimoire" }}
+          {{ .Title }} grimoire
+        {{ end }}
+      </h1>
+
+    {{ if .Content }}
+      <section class="post-meta">{{ .Content }}</section>
+    {{ end }}
+    </header>
   {{ end }}
 
 	<div class="extra-pagination">
