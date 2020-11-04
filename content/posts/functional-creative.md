@@ -7,8 +7,6 @@ scriptNames:
 summary: "Exploring creative coding options in functional languages."
 ---
 
-{{< elm-canvas >}}
-
 Every once in a while I find myself returning to creative coding. Previously I
 used [p5js] with [TypeScript] for this. Browsersync's hot reloading combined
 with the excellent Processing environment makes for a really pleasant developer
