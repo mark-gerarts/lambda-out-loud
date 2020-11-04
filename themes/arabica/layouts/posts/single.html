@@ -17,7 +17,7 @@
     <footer class="post-footer">
       {{ with .Params.tags -}}
       <section class="tags post-meta">
-        Tagged
+        Tags:
         {{ range . }}
         {{- $name := . -}}
           {{- with $.Site.GetPage "taxonomy" (printf "tags/%s" $name) | default ($.Site.GetPage "taxonomy" (printf "tags/%s" ($name | urlize))) -}}
