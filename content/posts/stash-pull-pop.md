@@ -4,6 +4,8 @@ date: 2020-08-05T13:40:22+02:00
 summary: "Fetch upstream changes easily, even if you have unstaged changes."
 grimoire:
     - Git
+tags:
+    - Git
 ---
 
 If you happen to work on the same branch with multiple people, it can be

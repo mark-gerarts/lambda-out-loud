@@ -2,7 +2,7 @@
 title: "Accessing private properties in PHP"
 date: 2018-06-09T19:41:36+02:00
 tags:
-    - php
+    - PHP
 description: 'Finding a way around property visibility'
 summary: >
     Private properties can only be accessed by the class that defines the

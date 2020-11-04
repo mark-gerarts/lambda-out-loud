@@ -4,6 +4,8 @@ date: 2020-11-03T11:42:10+01:00
 summary: "Using the `env` command, we can simulate the environment cron runs in."
 grimoire:
     - Linux
+tags:
+    - Linux
 ---
 
 Sometimes cronjobs don't work as expected. One of the reasons for this is that

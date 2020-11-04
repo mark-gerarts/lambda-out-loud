@@ -4,8 +4,8 @@ date: 2018-06-06T18:58:01+02:00
 categories:
     - tutorials
 tags:
-    - lisp
-    - clos
+    - Lisp
+    - CLOS
 description: 'An introduction to the Common Lisp Object System'
 summary: >
   If you're coming from the more mainstream OO languages, the Common Lisp Object
