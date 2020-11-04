@@ -38,5 +38,5 @@ Combined with an alias:
 
 ```bash
 # ~/.bash_aliases
-alias spp="~/scripts/.spp.sh"
+alias spp="~/scripts/spp.sh"
 ```
