@@ -18,14 +18,6 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/icons.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
 
-    
-    <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Lato:100,100i,300,300i,400,400i,700,700i|Source+Code+Pro:300,400,500,700" rel="stylesheet">
-    
-
-    
-    
-
-
     <script>
       var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       if (dnt != "1" && dnt != "yes") {
@@ -79,7 +71,7 @@
       <p>If you&rsquo;re coming from the more mainstream OO languages, the Common Lisp Object
 System (<em>CLOS</em>) might seem a bit alien. This introduction is intended to get
 you up to speed with the basic principles of object orientation in Lisp.</p>
-<h2 id="object-structure">Object structure</h2>
+<h2 id="object-structure">Object structure&nbsp;<a class="anchor" href="#object-structure"><svg viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></i></a> </h2>
 <p>To see how CLOS differs from your regular OO language, we&rsquo;ll start with a
 familiar example and work our way towards the Lisp equivalent. Let&rsquo;s take a
 look at this highly sophisticated <code>Player</code> class:</p>
@@ -107,7 +99,7 @@ look at this highly sophisticated <code>Player</code> class:</p>
 </code></pre></div><p>In Java, and many other languages, methods and properties are put together in
 the class definition. Lisp takes a different approach, separating the structure
 (properties) from the functionality (methods) of a class.</p>
-<h3 id="defining-a-class">Defining a class</h3>
+<h3 id="defining-a-class">Defining a class&nbsp;<a class="anchor" href="#defining-a-class"><svg viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></i></a> </h3>
 <p>We&rsquo;ll define a class using the <a href="http://clhs.lisp.se/Body/m_defcla.htm"><code>defclass</code></a> macro. This describes
 the structure of the class. In essence, it is just a list of properties with
 some info about how these properties are accessed and initialized. In Lisp,
@@ -131,7 +123,7 @@ example, you can add a docstring using <code>:documentation</code>.</li>
     <span style="color:#517918">:initform</span> <span style="color:#40a070">100</span>
     <span style="color:#517918">:accessor</span> <span style="color:#bb60d5">hitpoints</span>))
   (<span style="color:#517918">:documentation</span> <span style="color:#4070a0">&#34;A docstring just to show how a class-option looks like&#34;</span>))
-</code></pre></div><h3 id="slots">Slots</h3>
+</code></pre></div><h3 id="slots">Slots&nbsp;<a class="anchor" href="#slots"><svg viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></i></a> </h3>
 <p>The slot specifiers describe the slots: how they&rsquo;re accessed, their initial
 value, and so on. This is done using slot options. These are the ones most
 often used:</p>
@@ -144,7 +136,7 @@ and a setter. Multiple accessors can be defined for the same slot.</li>
 </ul>
 <p>Other slot options exist (<code>:type</code>, <code>:documentation</code>, &hellip;). Take a look at the
 <a href="http://clhs.lisp.se/Body/m_defcla.htm">HyperSpec</a> for some more information.</p>
-<h3 id="object-instantiation">Object instantiation</h3>
+<h3 id="object-instantiation">Object instantiation&nbsp;<a class="anchor" href="#object-instantiation"><svg viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></i></a> </h3>
 <p>You can make an instance of a class using <a href="http://www.lispworks.com/documentation/lw60/CLHS/Body/f_mk_ins.htm"><code>make-instance</code></a>.
 This is where the <code>:initarg</code>s come into play.</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#007020">defvar</span> *p* (<span style="color:#06287e">make-instance</span> <span style="color:#517918">&#39;player</span> <span style="color:#517918">:name</span> <span style="color:#4070a0">&#34;AzureDiamond&#34;</span>))
@@ -185,7 +177,7 @@ for when your&rsquo;re writing more complex code.</p>
 (<span style="color:#007020">with-accessors</span> ((<span style="color:#bb60d5">hitpoints</span> <span style="color:#bb60d5">hitpoints</span>)) <span style="color:#bb60d5">player</span>
   (<span style="color:#007020">when</span> (<span style="color:#06287e">minusp</span> <span style="color:#bb60d5">hitpoints</span>)
     (<span style="color:#007020">setf</span> <span style="color:#bb60d5">hitpoints</span> <span style="color:#40a070">0</span>)))
-</code></pre></div><h2 id="object-behaviour">Object behaviour</h2>
+</code></pre></div><h2 id="object-behaviour">Object behaviour&nbsp;<a class="anchor" href="#object-behaviour"><svg viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></i></a> </h2>
 <p>Object behaviour is implemented using methods. Methods are concrete
 implementations of generic functions. Think of a generic function like a
 blueprint or an interface.</p>
@@ -224,7 +216,7 @@ the given argument will be called.</p>
 </code></pre></div><p>Lots of interesting things can be done with methods, such as
 <a href="http://www.gigamonkeys.com/book/object-reorientation-generic-functions.html#method-combination">method combination</a>, but this goes beyond the scope of a
 simple introduction.</p>
-<h2 id="inheritance">Inheritance</h2>
+<h2 id="inheritance">Inheritance&nbsp;<a class="anchor" href="#inheritance"><svg viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></i></a> </h2>
 <p>When defining a class using <code>defclass</code>, you can specify a list of parent classes
 as well. Let&rsquo;s say we will allow our players to be a mighty <code>Wizard</code>:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#007020">defclass</span> <span style="color:#bb60d5">wizard</span> (<span style="color:#bb60d5">player</span>)
@@ -262,7 +254,7 @@ this method, the method whose arguments best match the given one will be called.
 
 <span style="color:#bb60d5">CL-USER&gt;</span> (<span style="color:#bb60d5">receive-damage</span> (<span style="color:#06287e">make-instance</span> <span style="color:#517918">&#39;player</span>) <span style="color:#40a070">10</span>)
 <span style="color:#40a070">90</span>
-</code></pre></div><h3 id="multiple-inheritance">Multiple inheritance</h3>
+</code></pre></div><h3 id="multiple-inheritance">Multiple inheritance&nbsp;<a class="anchor" href="#multiple-inheritance"><svg viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></i></a> </h3>
 <p>Another intersting and useful feature of CLOS is that is supports multiple
 inheritance. A class is allowed to have multiple parent classes.</p>
 <p>We&rsquo;ll use an example to make things clear. We want players to be able to be a
@@ -297,7 +289,7 @@ one has priority. So for our example, the wizard class takes priority.</p>
 CLOS has well-defined rules for what should happen in these cases. However, it
 is considered best practice to manually define the order if such a tie can
 occur. This goes beyond this introduction though.</p>
-<h2 id="further-reading">Further reading</h2>
+<h2 id="further-reading">Further reading&nbsp;<a class="anchor" href="#further-reading"><svg viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></i></a> </h2>
 <p>While I hope this little guide helped you get started with CLOS, you&rsquo;ll want to
 go more in-depth eventually. I&rsquo;ve used the following sources to write this post,
 I recommend you check them out as well!</p>
@@ -308,10 +300,11 @@ I recommend you check them out as well!</p>
 <li><a href="https://en.wikipedia.org/wiki/Common_Lisp_Object_System">Wikipedia</a></li>
 </ul>
 
+
     </section>
     <footer class="post-footer">
       <section class="tags post-meta">
-        Tagged
+        Tags:
         <a href="https://www.lambda-out-loud.com/tags/lisp/">lisp</a>
           <a href="https://www.lambda-out-loud.com/tags/clos/">clos</a>
           

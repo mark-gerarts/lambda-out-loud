@@ -18,14 +18,6 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/icons.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
 
-    
-    <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Lato:100,100i,300,300i,400,400i,700,700i|Source+Code+Pro:300,400,500,700" rel="stylesheet">
-    
-
-    
-    
-
-
     <script>
       var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       if (dnt != "1" && dnt != "yes") {
@@ -80,7 +72,7 @@
 cron commands run with a different set of environment variables. While you can
 redirect a script&rsquo;s output to a file in the crontab, I find it easier to run the
 command myself and see the output directly.</p>
-<h2 id="quick--easy">Quick &amp; easy</h2>
+<h2 id="quick--easy">Quick &amp; easy&nbsp;<a class="anchor" href="#quick--easy"><svg viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></i></a> </h2>
 <p>The quick and easy way to simulate a cron command is to use <code>env -i</code>, which
 creates a completely empty environment:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ env -i &lt;your <span style="color:#007020">command</span> to run&gt;
@@ -89,7 +81,7 @@ creates a completely empty environment:</p>
 <span style="color:#40a070">54</span>
 $ env -i printenv | wc -l
 <span style="color:#40a070">0</span>
-</code></pre></div><h2 id="a-more-precise-environment">A more precise environment</h2>
+</code></pre></div><h2 id="a-more-precise-environment">A more precise environment&nbsp;<a class="anchor" href="#a-more-precise-environment"><svg viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></i></a> </h2>
 <p><code>env -i</code> will be sufficient for most cases. However, cron&rsquo;s environment isn&rsquo;t
 <em>completely</em> empty. If you want to run a command with exactly the same
 parameters, you&rsquo;ll first have to export the parameters to a file in a cronjob.
@@ -110,6 +102,7 @@ it:</p>
 <span style="color:#bb60d5">PWD</span><span style="color:#666">=</span>/home/mark
 <span style="color:#bb60d5">SHELL</span><span style="color:#666">=</span>/bin/sh
 </code></pre></div>
+
     </section>
     <footer class="post-footer">
       

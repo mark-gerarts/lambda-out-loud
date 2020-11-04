@@ -28,75 +28,42 @@ html {
 }
 
 body {
-    -webkit-font-feature-settings: 'kern' 1;
-    -moz-font-feature-settings: 'kern' 1;
-    -ms-font-feature-settings: 'kern' 1;
-    -o-font-feature-settings: 'kern' 1;
-    font-feature-settings: 'kern' 1;
     height: 100%;
     max-height: 100%;
     width: 80%;
-    max-width: 650px;
+    max-width: 40em;
     margin: 0 auto;
-    font-family: "Lato", sans-serif;
-	font-weight: 400;
-    font-size: 1rem;
+    font-family: Georgia, serif;
+    font-size: 20px;
     line-height: 1.7;
-    color: #3A4145;
+    color: #1a1a1a;
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Bree Serif", serif;
-	font-weight: 500;
-	margin-bottom: 0;
-}
-
-h1 {
-    font-size: 1.802rem;
-    margin-top: 0;
-}
-
-h2 {
-	font-size: 1.602rem;
-}
-
-h3 {
-	font-size: 1.424rem;
-}
-
-h4 {
-	font-size: 1.266rem;
-}
-
-h5 {
-	font-size: 1.125rem;
-}
-
-h6 {
-	font-size: 1rem;
+    margin-top: 1.7em;
+    margin-bottom: 0;
 }
 
 p {
-	margin-top: 0;
+    margin-top: 0
 }
 
-code, tt, pre {
-    font-family: "Source Code Pro", monospace, sans-serif;
-    white-space: pre-wrap;
-    font-size: 0.79rem;
-    border: none;
-    background: none;
+code {
+    font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: .2em .4em;
+    font-size: 85%;
 }
 
 pre {
-	padding: 1em;
-	line-height: 1.3em;
+    padding: 1em;
+    line-height: 1.5em;
+    overflow-x: scroll;
+    white-space: pre;
 }
-
-code, tt {
-	font-weight: 500;
-}
-
 
 blockquote {
     background: #f9f9f9;
@@ -127,12 +94,23 @@ hr {
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-	color: #3A4145;
+	color: #1a1a1a;
 	text-decoration: none;
 }
 
+.anchor {
+    position: absolute;
+    left: -20px;
+    width:20px;
+    opacity: 0;
+}
+
+h2:hover .anchor, h3:hover .anchor, h4:hover .anchor, h5:hover .anchor, h6:hover .anchor {
+    opacity: 1;
+}
+
 .post-title a {
-	color: #3A4145 !important;
+	color: #1a1a1a !important;
 	text-decoration: none !important;
 }
 
@@ -215,7 +193,6 @@ dl dd {
 .blog-title {
     margin: 0;
     padding: 0;
-    font-family: "Lato", sans-serif;
     font-size: 2.887rem;
     vertical-align: middle;
     line-height: 1;
@@ -224,7 +201,6 @@ dl dd {
 .blog-description {
     margin: 0;
     font-size: 1rem;
-    font-family: "Lato", sans-serif;
     letter-spacing: 0;
     font-weight: 300;
     font-style: italic;
@@ -298,41 +274,31 @@ a.subscribe-button {
 }
 
 .post-header {
-	margin-bottom: 0.5rem;
-}
-
-.post-title {
-	margin-bottom: 0;
-	line-height: 1;
+    margin: 4em 0;
+    text-align: center;
 }
 
 .post-meta {
-	text-transform: uppercase;
-	font-size: .79rem;
+    margin-top: 1em;
 }
 
 .post-footer {
 	margin-top: 2rem;
 }
 
-.post-footer h4 {
-	margin: 2rem 0 0;
+.post-summary .post-header {
+    text-align: left;
+    margin: 0;
 }
 
-.post-footer .share {
-    margin: 0 auto;
+.post-excerpt p {
+    margin: 0;
 }
 
-.post-footer .share a {
-    font-size: 1.8rem;
-    display: inline-block;
-    margin: 1rem 1.6rem 1.6rem 0;
-    color: #BBC7CC;
-    text-decoration: none;
-}
-
-.post-footer .share a:hover {
-    color: #50585D;
+.post-summary .post-meta {
+    margin-top: 10px;
+    font-size: 80%;
+    text-transform: uppercase;
 }
 
 .post img {
@@ -416,7 +382,6 @@ a.subscribe-button {
 	========================================================================== */
 
 .tag-title {
-    font-family: "Lato", sans-serif;
     font-size: 1.802rem;
 	font-weight: bold;
 	margin-top: 0;

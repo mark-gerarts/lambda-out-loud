@@ -6,7 +6,11 @@
     <description>Recent content on Lambda Out Loud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Nov 2020 11:42:10 +0100</lastBuildDate><atom:link href="https://www.lambda-out-loud.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 Mar 2020 10:57:49 +0100</lastBuildDate>
+    
+	<atom:link href="https://www.lambda-out-loud.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Debugging cron with `env`</title>
       <link>https://www.lambda-out-loud.com/posts/debugging-cron-with-env/</link>
@@ -27,10 +31,10 @@
     
     <item>
       <title>Functional creative coding</title>
-      <link>https://www.lambda-out-loud.com/creative-code/functional-creative/</link>
+      <link>https://www.lambda-out-loud.com/posts/functional-creative/</link>
       <pubDate>Sat, 11 Apr 2020 11:07:30 +0100</pubDate>
       
-      <guid>https://www.lambda-out-loud.com/creative-code/functional-creative/</guid>
+      <guid>https://www.lambda-out-loud.com/posts/functional-creative/</guid>
       <description>Exploring creative coding options in functional languages.</description>
     </item>
     
