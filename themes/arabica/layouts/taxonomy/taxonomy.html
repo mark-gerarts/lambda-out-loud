@@ -27,9 +27,6 @@
     </header>
   {{ end }}
 
-	<div class="extra-pagination">
-	    {{ partial "pagination.html" .}}
-	</div>
   {{ range $paginator.Pages  }}
   {{ .Render "summary"  }}
   {{ end  }}
