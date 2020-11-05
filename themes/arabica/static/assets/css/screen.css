@@ -455,3 +455,9 @@ elm-canvas canvas {
     margin-left: 50%;
     transform: translate(-50%);
 }
+
+/** I am not sorry **/
+svg.icon-rss {
+    clip-path: inset(0 0 50% 50%);
+    transform: translate(0, 12px);
+}
