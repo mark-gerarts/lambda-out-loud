@@ -41,7 +41,7 @@ code {
 pre {
     padding: 1em;
     line-height: 1.5em;
-    overflow-x: scroll;
+    overflow-x: auto;
     white-space: pre;
 }
 
