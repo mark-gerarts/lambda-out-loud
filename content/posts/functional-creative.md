@@ -2,6 +2,9 @@
 title: "Functional creative coding"
 date: 2020-04-11T11:07:30+01:00
 summary: "Exploring creative coding options in functional languages."
+tags:
+    - Creative coding
+    - Functional programming
 ---
 
 Every once in a while I find myself returning to creative coding. Previously I
