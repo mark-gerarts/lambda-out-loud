@@ -7,13 +7,12 @@
     
     <title>
       
-      tutorials - Lambda Out Loud
+      Copying in the terminal - Lambda Out Loud
       
 		</title>
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="alternate" type="application/rss&#43;xml" href="https://www.lambda-out-loud.com/categories/tutorials/index.xml">
     
     <link rel="stylesheet" type="text/css" href="/assets/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
@@ -36,7 +35,7 @@
     
 </head>
 
-    <body class="tag-template">
+    <body class="post-template">
         <header class="main-header">
 	<div class="main-header-content">
 		<a href="/">
@@ -58,49 +57,32 @@
 </header>
 
         
-
 <main class="content" role="main">
-
-  
+  <article class="post">
     <header class="post-header">
-      <h1 class="post-title">
-        
-        
-      </h1>
-
       
-
-      
+      <h1 class="post-title">Copying in the terminal</h1>
+      <section class="post-meta">
+        <time class="post-date">January 03, 2021</time>
+      </section>
     </header>
-  
+    <section class="post-content">
+      <p><a href="https://github.com/astrand/xclip"><code>xclip</code></a> is a useful tool to copy output from
+the terminal directly to your clipboard. It&rsquo;s typical usage is as follows:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#007020">echo</span> <span style="color:#4070a0">&#34;Hello, world&#34;</span> | xclip -selection clipboard
+</code></pre></div><p>I&rsquo;ve put this in an alias to save some precious keystrokes:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#007020">alias</span> <span style="color:#bb60d5">cclip</span><span style="color:#666">=</span><span style="color:#4070a0">&#39;xclip -selection clipboard&#39;</span>
+$ <span style="color:#007020">echo</span> <span style="color:#4070a0">&#34;Hello, world&#34;</span> | cclip
+</code></pre></div>
 
-  
-  <article class="post-summary">
-	<header class="post-header">
-    
-		<h2 class="post-title"><a href="/posts/clos-introduction/">Classes in Lisp: an introduction to CLOS</a></h2>
-	</header>
-	<section class="post-excerpt">
-    <p>
-      If you&rsquo;re coming from the more mainstream OO languages, the Common Lisp Object System (<em>CLOS</em>) might seem a bit alien. This introduction is intended to get you up to speed with the basic principles of object orientation in Lisp.
-    </p>
-    <a class="read-more" href="/posts/clos-introduction/">Read more &raquo;</a>
-	</section>
-	<footer class="post-meta">
-    <time class="post-date">June 06, 2018</time>
-	</footer>
-</article>
-
-  
-  
-
-<nav class="pagination" role="navigation">
-    
-    <span class="page-number">Page 1 of 1</span>
-    
-</nav>
-
-
+    </section>
+    <footer class="post-footer">
+      <section class="tags post-meta">
+        Tags:
+        <a href="https://www.lambda-out-loud.com/tags/linux/">Linux</a>
+      </section>
+    </footer>
+  </article>
 </main>
 
         <footer class="site-footer">

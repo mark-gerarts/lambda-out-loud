@@ -2,8 +2,8 @@
 title: Grimoire
 ---
 
-A collection of useful code snippets that I resort to often, or which I find
-interesting.
+Bite-sized blog posts containing useful code snippets that I resort to often, or
+which I simply find interesting.
 
 > A computational process is indeed much like a sorcerer's idea of a spirit. It
 > cannot be seen or touched. It is not composed of matter at all. However, it is

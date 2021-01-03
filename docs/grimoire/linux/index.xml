@@ -6,10 +6,19 @@
     <description>Recent content in Linux on Lambda Out Loud</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Nov 2020 11:42:10 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 03 Jan 2021 13:05:34 +0100</lastBuildDate>
     
 	<atom:link href="https://www.lambda-out-loud.com/grimoire/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Copying in the terminal</title>
+      <link>https://www.lambda-out-loud.com/posts/copying-in-the-terminal/</link>
+      <pubDate>Sun, 03 Jan 2021 13:05:34 +0100</pubDate>
+      
+      <guid>https://www.lambda-out-loud.com/posts/copying-in-the-terminal/</guid>
+      <description>Copy terminal output using &lt;code&gt;xclip&lt;/code&gt;</description>
+    </item>
     
     <item>
       <title>Debugging cron with `env`</title>

@@ -45,6 +45,10 @@ pre {
     white-space: pre;
 }
 
+pre code {
+    padding: 0;
+}
+
 blockquote {
     background: #f9f9f9;
     border-left: 10px solid #9EABB3;
