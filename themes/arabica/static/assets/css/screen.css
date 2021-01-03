@@ -266,6 +266,11 @@ a.subscribe-button {
 	margin-top: 2rem;
 }
 
+a.post-summary-wrapper {
+    color: inherit;
+    text-decoration: none;
+}
+
 .post-summary .post-header {
     text-align: left;
     margin: 0;
