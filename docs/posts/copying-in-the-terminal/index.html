@@ -1,103 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+  <title>
     
-    <title>
-      
-      Copying in the terminal - Lambda Out Loud
-      
-		</title>
-
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    Copying in the terminal - Lambda Out Loud
     
-    <link rel="stylesheet" type="text/css" href="/assets/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+  </title>
 
-    <script>
-      var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      if (dnt != "1" && dnt != "yes") {
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                                   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-          ga('create', 'UA-99354109-1', 'auto');
-          ga('set', 'anonymizeIp', true);
-          ga('send', 'pageview');
-      } else {
-          console.debug("Respecting Do-Not-Track, not loading analytics.");
-      }
-    </script>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
 
-    
+  <script data-goatcounter="https://lambda-out-loud.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+  
 </head>
 
     <body class="post-template">
-        <header class="main-header">
-	<div class="main-header-content">
-		<a href="/">
-			<img src="/static/img/lambda.png" alt="Logo Lambda Out Loud" />
-		</a>
-		<h2 class="blog-description">A blog about all things code</h2>
+        <header>
+	<div>
+		<a href="/" class="site-title" title="Lambda Out Loud">λ!</a>
+		<p><em>A blog about all things code</em></p>
 	</div>
 
-	<div class="nav">
-    
+	<nav>
 		
-      <a class="nav- " role="presentation" href="/posts/">Posts</a>
 		
-      <a class="nav- " role="presentation" href="/grimoire/">Grimoire</a>
+		<a class=""
+			href="/posts/">Posts</a>
 		
-      <a class="nav- " role="presentation" href="/about/">About</a>
+		<a class=""
+			href="/grimoire/">Grimoire</a>
 		
-	</div>
+		<a class=""
+			href="/about/">About</a>
+		
+		</div>
+	</nav>
 </header>
 
         
-<main class="content" role="main">
-  <article class="post">
-    <header class="post-header">
-      
-      <h1 class="post-title">Copying in the terminal</h1>
-      <section class="post-meta">
-        <time class="post-date">January 03, 2021</time>
-      </section>
-    </header>
-    <section class="post-content">
+<main>
+    
+    <h1>Copying in the terminal</h1>
+    <p class="meta">
+      <time >January 03, 2021</time>
+    </p>
+    <section>
       <p><a href="https://github.com/astrand/xclip"><code>xclip</code></a> is a useful tool to copy output from
 the terminal directly to your clipboard. It&rsquo;s typical usage is as follows:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#007020">echo</span> <span style="color:#4070a0">&#34;Hello, world&#34;</span> | xclip -selection clipboard
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#007020">echo</span> <span style="color:#4070a0">&#34;Hello, world&#34;</span> | xclip -selection clipboard
 </code></pre></div><p>I&rsquo;ve put this in an alias to save some precious keystrokes:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#007020">alias</span> <span style="color:#bb60d5">cclip</span><span style="color:#666">=</span><span style="color:#4070a0">&#39;xclip -selection clipboard&#39;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#007020">alias</span> <span style="color:#bb60d5">cclip</span><span style="color:#666">=</span><span style="color:#4070a0">&#39;xclip -selection clipboard&#39;</span>
 $ <span style="color:#007020">echo</span> <span style="color:#4070a0">&#34;Hello, world&#34;</span> | cclip
 </code></pre></div>
-
     </section>
-    <footer class="post-footer">
-      <section class="tags post-meta">
-        Tags:
+    <p class="meta">
+      Tags:
         <a href="https://www.lambda-out-loud.com/tags/linux/">Linux</a>
-      </section>
-    </footer>
-  </article>
+    </p>
 </main>
 
-        <footer class="site-footer">
-  <section class="rss">
-    <a class="subscribe-button" href="/index.xml">
-      <svg class="icon-rss" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12ZM13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12Z" fill="currentColor"/>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z" fill="currentColor"/>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" fill="currentColor"/>
-      </svg> RSS
-    </a>
-  </section>
-  <section class="copyright">
-    &copy; 2021 Lambda Out Loud | <a href="mailto:mark.gerarts+lambda@gmail.com">Contact</a>
-  </section>
+        <footer>
+    &copy; 2022 Lambda Out Loud
+    | <a href="mailto:mark.gerarts+lambda@gmail.com">Contact</a>
+    | <a class="subscribe-button" href="/index.xml">RSS</a>
 </footer>
 
 

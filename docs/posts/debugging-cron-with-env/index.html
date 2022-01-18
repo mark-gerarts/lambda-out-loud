@@ -1,106 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+  <title>
     
-    <title>
-      
-      Debugging cron with `env` - Lambda Out Loud
-      
-		</title>
-
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    Debugging cron with `env` - Lambda Out Loud
     
-    <link rel="stylesheet" type="text/css" href="/assets/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+  </title>
 
-    <script>
-      var dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      if (dnt != "1" && dnt != "yes") {
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                                   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-          ga('create', 'UA-99354109-1', 'auto');
-          ga('set', 'anonymizeIp', true);
-          ga('send', 'pageview');
-      } else {
-          console.debug("Respecting Do-Not-Track, not loading analytics.");
-      }
-    </script>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+  <link rel="stylesheet" href="/assets/css/custom.css">
 
-    
+  <script data-goatcounter="https://lambda-out-loud.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+  
 </head>
 
     <body class="post-template">
-        <header class="main-header">
-	<div class="main-header-content">
-		<a href="/">
-			<img src="/static/img/lambda.png" alt="Logo Lambda Out Loud" />
-		</a>
-		<h2 class="blog-description">A blog about all things code</h2>
+        <header>
+	<div>
+		<a href="/" class="site-title" title="Lambda Out Loud">λ!</a>
+		<p><em>A blog about all things code</em></p>
 	</div>
 
-	<div class="nav">
-    
+	<nav>
 		
-      <a class="nav- " role="presentation" href="/posts/">Posts</a>
 		
-      <a class="nav- " role="presentation" href="/grimoire/">Grimoire</a>
+		<a class=""
+			href="/posts/">Posts</a>
 		
-      <a class="nav- " role="presentation" href="/about/">About</a>
+		<a class=""
+			href="/grimoire/">Grimoire</a>
 		
-	</div>
+		<a class=""
+			href="/about/">About</a>
+		
+		</div>
+	</nav>
 </header>
 
         
-<main class="content" role="main">
-  <article class="post">
-    <header class="post-header">
-      
-      <h1 class="post-title">Debugging cron with `env`</h1>
-      <section class="post-meta">
-        <time class="post-date">November 03, 2020</time>
-      </section>
-    </header>
-    <section class="post-content">
+<main>
+    
+    <h1>Debugging cron with `env`</h1>
+    <p class="meta">
+      <time >November 03, 2020</time>
+    </p>
+    <section>
       <p>Sometimes cronjobs don&rsquo;t work as expected. One of the reasons for this is that
 cron commands run with a different set of environment variables. While you can
 redirect a script&rsquo;s output to a file in the crontab, I find it easier to run the
 command myself and see the output directly.</p>
-<h2 id="quick--easy">Quick &amp; easy&nbsp;<a class="anchor" href="#quick--easy"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14.8284 12L16.2426 13.4142L19.071 10.5858C20.6331 9.02365 20.6331 6.49099 19.071 4.9289C17.509 3.3668 14.9763 3.3668 13.4142 4.9289L10.5858 7.75732L12 9.17154L14.8284 6.34311C15.6095 5.56206 16.8758 5.56206 17.6568 6.34311C18.4379 7.12416 18.4379 8.39049 17.6568 9.17154L14.8284 12Z" fill="currentColor"/>
-        <path d="M12 14.8285L13.4142 16.2427L10.5858 19.0711C9.02372 20.6332 6.49106 20.6332 4.92896 19.0711C3.36686 17.509 3.36686 14.9764 4.92896 13.4143L7.75739 10.5858L9.1716 12L6.34317 14.8285C5.56212 15.6095 5.56212 16.8758 6.34317 17.6569C7.12422 18.4379 8.39055 18.4379 9.1716 17.6569L12 14.8285Z" fill="currentColor"/>
-        <path d="M14.8285 10.5857C15.219 10.1952 15.219 9.56199 14.8285 9.17147C14.4379 8.78094 13.8048 8.78094 13.4142 9.17147L9.1716 13.4141C8.78107 13.8046 8.78107 14.4378 9.1716 14.8283C9.56212 15.2188 10.1953 15.2188 10.5858 14.8283L14.8285 10.5857Z" fill="currentColor"/>
-      </svg></i></a> </h2>
+<h2 id="quick--easy">Quick &amp; easy&nbsp;<a class="anchor" href="#quick--easy"><svg
+            width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M14.8284 12L16.2426 13.4142L19.071 10.5858C20.6331 9.02365 20.6331 6.49099 19.071 4.9289C17.509 3.3668 14.9763 3.3668 13.4142 4.9289L10.5858 7.75732L12 9.17154L14.8284 6.34311C15.6095 5.56206 16.8758 5.56206 17.6568 6.34311C18.4379 7.12416 18.4379 8.39049 17.6568 9.17154L14.8284 12Z"
+              fill="currentColor" />
+            <path
+              d="M12 14.8285L13.4142 16.2427L10.5858 19.0711C9.02372 20.6332 6.49106 20.6332 4.92896 19.0711C3.36686 17.509 3.36686 14.9764 4.92896 13.4143L7.75739 10.5858L9.1716 12L6.34317 14.8285C5.56212 15.6095 5.56212 16.8758 6.34317 17.6569C7.12422 18.4379 8.39055 18.4379 9.1716 17.6569L12 14.8285Z"
+              fill="currentColor" />
+            <path
+              d="M14.8285 10.5857C15.219 10.1952 15.219 9.56199 14.8285 9.17147C14.4379 8.78094 13.8048 8.78094 13.4142 9.17147L9.1716 13.4141C8.78107 13.8046 8.78107 14.4378 9.1716 14.8283C9.56212 15.2188 10.1953 15.2188 10.5858 14.8283L14.8285 10.5857Z"
+              fill="currentColor" />
+          </svg></i></a> </h2>
 <p>The quick and easy way to simulate a cron command is to use <code>env -i</code>, which
 creates a completely empty environment:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ env -i &lt;your <span style="color:#007020">command</span> to run&gt;
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ env -i &lt;your <span style="color:#007020">command</span> to run&gt;
 </code></pre></div><p>To illustrate the difference:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ printenv | wc -l
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ printenv | wc -l
 <span style="color:#40a070">54</span>
 $ env -i printenv | wc -l
 <span style="color:#40a070">0</span>
-</code></pre></div><h2 id="a-more-precise-environment">A more precise environment&nbsp;<a class="anchor" href="#a-more-precise-environment"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14.8284 12L16.2426 13.4142L19.071 10.5858C20.6331 9.02365 20.6331 6.49099 19.071 4.9289C17.509 3.3668 14.9763 3.3668 13.4142 4.9289L10.5858 7.75732L12 9.17154L14.8284 6.34311C15.6095 5.56206 16.8758 5.56206 17.6568 6.34311C18.4379 7.12416 18.4379 8.39049 17.6568 9.17154L14.8284 12Z" fill="currentColor"/>
-        <path d="M12 14.8285L13.4142 16.2427L10.5858 19.0711C9.02372 20.6332 6.49106 20.6332 4.92896 19.0711C3.36686 17.509 3.36686 14.9764 4.92896 13.4143L7.75739 10.5858L9.1716 12L6.34317 14.8285C5.56212 15.6095 5.56212 16.8758 6.34317 17.6569C7.12422 18.4379 8.39055 18.4379 9.1716 17.6569L12 14.8285Z" fill="currentColor"/>
-        <path d="M14.8285 10.5857C15.219 10.1952 15.219 9.56199 14.8285 9.17147C14.4379 8.78094 13.8048 8.78094 13.4142 9.17147L9.1716 13.4141C8.78107 13.8046 8.78107 14.4378 9.1716 14.8283C9.56212 15.2188 10.1953 15.2188 10.5858 14.8283L14.8285 10.5857Z" fill="currentColor"/>
-      </svg></i></a> </h2>
+</code></pre></div><h2 id="a-more-precise-environment">A more precise environment&nbsp;<a class="anchor" href="#a-more-precise-environment"><svg
+            width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M14.8284 12L16.2426 13.4142L19.071 10.5858C20.6331 9.02365 20.6331 6.49099 19.071 4.9289C17.509 3.3668 14.9763 3.3668 13.4142 4.9289L10.5858 7.75732L12 9.17154L14.8284 6.34311C15.6095 5.56206 16.8758 5.56206 17.6568 6.34311C18.4379 7.12416 18.4379 8.39049 17.6568 9.17154L14.8284 12Z"
+              fill="currentColor" />
+            <path
+              d="M12 14.8285L13.4142 16.2427L10.5858 19.0711C9.02372 20.6332 6.49106 20.6332 4.92896 19.0711C3.36686 17.509 3.36686 14.9764 4.92896 13.4143L7.75739 10.5858L9.1716 12L6.34317 14.8285C5.56212 15.6095 5.56212 16.8758 6.34317 17.6569C7.12422 18.4379 8.39055 18.4379 9.1716 17.6569L12 14.8285Z"
+              fill="currentColor" />
+            <path
+              d="M14.8285 10.5857C15.219 10.1952 15.219 9.56199 14.8285 9.17147C14.4379 8.78094 13.8048 8.78094 13.4142 9.17147L9.1716 13.4141C8.78107 13.8046 8.78107 14.4378 9.1716 14.8283C9.56212 15.2188 10.1953 15.2188 10.5858 14.8283L14.8285 10.5857Z"
+              fill="currentColor" />
+          </svg></i></a> </h2>
 <p><code>env -i</code> will be sufficient for most cases. However, cron&rsquo;s environment isn&rsquo;t
 <em>completely</em> empty. If you want to run a command with exactly the same
 parameters, you&rsquo;ll first have to export the parameters to a file in a cronjob.
 For example:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">* * * * * /usr/bin/env | sort &gt; /tmp/cron_env_vars
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">* * * * * /usr/bin/env | sort &gt; /tmp/cron_env_vars
 </code></pre></div><p>You&rsquo;ll have to wait a minute for this, unfortunately. If you know a better way,
 let me know!</p>
 <p>Once the file is created, you can use <code>env</code> again to load the parameters from
 it:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ env -i <span style="color:#007020;font-weight:bold">$(</span>cat /tmp/cron_env_vars | xargs<span style="color:#007020;font-weight:bold">)</span> &lt;your <span style="color:#007020">command</span> to run&gt;
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ env -i <span style="color:#007020;font-weight:bold">$(</span>cat /tmp/cron_env_vars | xargs<span style="color:#007020;font-weight:bold">)</span> &lt;your <span style="color:#007020">command</span> to run&gt;
 </code></pre></div><p>Using <code>printenv</code> again to illustrate this:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ env -i <span style="color:#007020;font-weight:bold">$(</span>cat /tmp/cron_env_vars | xargs<span style="color:#007020;font-weight:bold">)</span> printenv
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ env -i <span style="color:#007020;font-weight:bold">$(</span>cat /tmp/cron_env_vars | xargs<span style="color:#007020;font-weight:bold">)</span> printenv
 <span style="color:#bb60d5">HOME</span><span style="color:#666">=</span>/home/mark
 <span style="color:#bb60d5">LANG</span><span style="color:#666">=</span>en_US.UTF-8
 <span style="color:#bb60d5">LANGUAGE</span><span style="color:#666">=</span>en_GB:en
@@ -109,30 +107,17 @@ it:</p>
 <span style="color:#bb60d5">PWD</span><span style="color:#666">=</span>/home/mark
 <span style="color:#bb60d5">SHELL</span><span style="color:#666">=</span>/bin/sh
 </code></pre></div>
-
     </section>
-    <footer class="post-footer">
-      <section class="tags post-meta">
-        Tags:
+    <p class="meta">
+      Tags:
         <a href="https://www.lambda-out-loud.com/tags/linux/">Linux</a>
-      </section>
-    </footer>
-  </article>
+    </p>
 </main>
 
-        <footer class="site-footer">
-  <section class="rss">
-    <a class="subscribe-button" href="/index.xml">
-      <svg class="icon-rss" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12ZM13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12Z" fill="currentColor"/>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z" fill="currentColor"/>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" fill="currentColor"/>
-      </svg> RSS
-    </a>
-  </section>
-  <section class="copyright">
-    &copy; 2021 Lambda Out Loud | <a href="mailto:mark.gerarts+lambda@gmail.com">Contact</a>
-  </section>
+        <footer>
+    &copy; 2022 Lambda Out Loud
+    | <a href="mailto:mark.gerarts+lambda@gmail.com">Contact</a>
+    | <a class="subscribe-button" href="/index.xml">RSS</a>
 </footer>
 
 

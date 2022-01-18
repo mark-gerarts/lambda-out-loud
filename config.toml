@@ -37,3 +37,6 @@ theme = "arabica"
     noClasses = true
     style = "friendly"
     tabWidth = 4
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

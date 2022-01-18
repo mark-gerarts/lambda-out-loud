@@ -13,5 +13,5 @@ which I simply find interesting.
 > spells. They are carefully composed from symbolic expressions in arcane and
 > esoteric programming languages that prescribe the tasks we want our processes
 > to perform.
-
-*‒ Structure and Interpretation of Computer Programs, Abelson, Sussman, and Sussman*
+>
+> <cite>- Structure and Interpretation of Computer Programs, Abelson, Sussman, and Sussman</cite>

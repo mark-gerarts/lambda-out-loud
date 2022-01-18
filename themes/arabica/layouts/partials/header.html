@@ -1,15 +1,15 @@
-<header class="main-header">
-	<div class="main-header-content">
-		<a href="{{ "/" | relLangURL }}">
-			<img src="/static/img/lambda.png" alt="Logo Lambda Out Loud" />
-		</a>
-		<h2 class="blog-description">{{ .Site.Params.description }}</h2>
+<header>
+	<div>
+		<a href="/" class="site-title" title="Lambda Out Loud">λ!</a>
+		<p><em>{{ .Site.Params.description }}</em></p>
 	</div>
 
-	<div class="nav">
-    {{ $currentPage := . }}
+	<nav>
+		{{ $currentPage := . }}
 		{{ range .Site.Menus.main }}
-      <a class="nav- {{ if $currentPage.IsMenuCurrent "main" . }}nav-current{{ end }}" role="presentation" href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}</a>
+		<a class="{{ if $currentPage.IsMenuCurrent "main" . }}nav-current{{ end }}"
+			href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}</a>
 		{{ end }}
-	</div>
+		</div>
+	</nav>
 </header>
