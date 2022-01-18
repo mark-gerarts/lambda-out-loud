@@ -18,7 +18,7 @@ closures and array casting.
 PHP provides a [reflection API][reflection-php] to retrieve metadata of classes,
 methods, interfaces, and so on. Of special interest to us is the
 [`ReflectionProperty`][reflection-property] class. Among other things, it has
-the wonderful method `setAccesible`.
+the wonderful method `setAccessible`.
 
 In our code samples, we're going to try to retrieve and change the property
 `$property` of the following class:
@@ -213,7 +213,7 @@ resulting object is a new instance. This makes it pretty useless. On top of
 that, the code needed to achieve this looks really ugly.
 
 We can do better than this. You probably know about
-[`arrray_walk`][array-walk-php]. It walks over each element of an array, and
+[`array_walk`][array-walk-php]. It walks over each element of an array, and
 applies a callback to it. This array is passed by reference. That's cool and
 all, but how is this going to solve our problem? Well, apparently you can pass
 an object to `array_walk` without PHP complaining. It will implicitly get cast

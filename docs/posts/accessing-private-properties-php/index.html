@@ -69,7 +69,7 @@ closures and array casting.</p>
 <p>PHP provides a <a href="https://secure.php.net/manual/en/book.reflection.php">reflection API</a> to retrieve metadata of classes,
 methods, interfaces, and so on. Of special interest to us is the
 <a href="https://secure.php.net/manual/en/class.reflectionproperty.php"><code>ReflectionProperty</code></a> class. Among other things, it has
-the wonderful method <code>setAccesible</code>.</p>
+the wonderful method <code>setAccessible</code>.</p>
 <p>In our code samples, we&rsquo;re going to try to retrieve and change the property
 <code>$property</code> of the following class:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#666">&lt;?</span>php
@@ -251,7 +251,7 @@ var_dump(<span style="color:#bb60d5">$result</span><span style="color:#666">-&gt
 resulting object is a new instance. This makes it pretty useless. On top of
 that, the code needed to achieve this looks really ugly.</p>
 <p>We can do better than this. You probably know about
-<a href="https://secure.php.net/manual/en/function.array-walk.php"><code>arrray_walk</code></a>. It walks over each element of an array, and
+<a href="https://secure.php.net/manual/en/function.array-walk.php"><code>array_walk</code></a>. It walks over each element of an array, and
 applies a callback to it. This array is passed by reference. That&rsquo;s cool and
 all, but how is this going to solve our problem? Well, apparently you can pass
 an object to <code>array_walk</code> without PHP complaining. It will implicitly get cast
