@@ -14,7 +14,7 @@
   <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
   {{ end -}}
 
-  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+  <link rel="stylesheet" href="{{ "assets/css/simple.min.css"|relURL }}">
   <link rel="stylesheet" href="{{ "assets/css/custom.css"|relURL }}">
 
   <script data-goatcounter="https://lambda-out-loud.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
