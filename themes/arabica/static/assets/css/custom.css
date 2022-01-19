@@ -58,7 +58,6 @@ pre {
     background-color: var(--code-bg);
 }
 
-
 code {
     background-color: var(--code-bg);
     color: inherit;
@@ -78,5 +77,10 @@ code {
 
     pre {
         background-color: var(--accent-bg)!important;
+    }
+
+    /* Little hack to override low contrast colors in dark mode. */
+    pre span[style^="color:#06287e"] {
+        color: var(--preformatted)!important;
     }
 }
