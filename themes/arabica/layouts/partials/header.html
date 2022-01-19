@@ -8,8 +8,8 @@
 		{{ $currentPage := . }}
 		{{ range .Site.Menus.main }}
 		<a class="{{ if $currentPage.IsMenuCurrent "main" . }}nav-current{{ end }}"
-			href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}</a>
+			href="{{ .URL | relLangURL | safeURL }}">{{ .Name }}
+		 </a>
 		{{ end }}
-		</div>
 	</nav>
 </header>
