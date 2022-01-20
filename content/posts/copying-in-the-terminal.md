@@ -1,7 +1,7 @@
 ---
 title: "Copying in the terminal"
 date: 2021-01-03T13:05:34+01:00
-summary: "Copy terminal output using `xclip`"
+summary: "Copy terminal output using `xclip`."
 grimoire:
     - Linux
 tags:

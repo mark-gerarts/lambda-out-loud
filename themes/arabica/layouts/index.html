@@ -4,7 +4,7 @@
     {{ if .IsHome }}
       {{ $pages = where .Site.RegularPages "Type" "in" site.Params.mainSections }}
     {{ end }}
-    {{ $paginator := .Paginate $pages }}
+    {{ $paginator := .Paginate $pages 10 }}
 
 		{{ range $paginator.Pages }}
       {{ .Render "summary" }}
