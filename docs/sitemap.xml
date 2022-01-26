@@ -2,25 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.lambda-out-loud.com/posts/flatten-arrays-php/</loc>
-    <lastmod>2022-01-20T09:42:00+01:00</lastmod>
+    <loc>https://www.lambda-out-loud.com/posts/export-mysql-query-as-csv/</loc>
+    <lastmod>2022-01-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.lambda-out-loud.com/grimoire/</loc>
-    <lastmod>2022-01-20T09:42:00+01:00</lastmod>
+    <lastmod>2022-01-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.lambda-out-loud.com/</loc>
+    <lastmod>2022-01-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.lambda-out-loud.com/tags/mysql/</loc>
+    <lastmod>2022-01-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.lambda-out-loud.com/grimoire/mysql/</loc>
+    <lastmod>2022-01-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.lambda-out-loud.com/posts/</loc>
+    <lastmod>2022-01-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.lambda-out-loud.com/tags/sql/</loc>
+    <lastmod>2022-01-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.lambda-out-loud.com/tags/</loc>
+    <lastmod>2022-01-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.lambda-out-loud.com/posts/flatten-arrays-php/</loc>
     <lastmod>2022-01-20T09:42:00+01:00</lastmod>
   </url><url>
     <loc>https://www.lambda-out-loud.com/tags/php/</loc>
     <lastmod>2022-01-20T09:42:00+01:00</lastmod>
   </url><url>
     <loc>https://www.lambda-out-loud.com/grimoire/php/</loc>
-    <lastmod>2022-01-20T09:42:00+01:00</lastmod>
-  </url><url>
-    <loc>https://www.lambda-out-loud.com/posts/</loc>
-    <lastmod>2022-01-20T09:42:00+01:00</lastmod>
-  </url><url>
-    <loc>https://www.lambda-out-loud.com/tags/</loc>
     <lastmod>2022-01-20T09:42:00+01:00</lastmod>
   </url><url>
     <loc>https://www.lambda-out-loud.com/posts/copying-in-the-terminal/</loc>

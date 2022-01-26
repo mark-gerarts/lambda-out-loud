@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQL on Lambda Out Loud</title>
+    <link>https://www.lambda-out-loud.com/tags/sql/</link>
+    <description>Recent content in SQL on Lambda Out Loud</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.lambda-out-loud.com/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exporting a MySQL query as CSV</title>
+      <link>https://www.lambda-out-loud.com/posts/export-mysql-query-as-csv/</link>
+      <pubDate>Wed, 26 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.lambda-out-loud.com/posts/export-mysql-query-as-csv/</guid>
+      <description>A commandline trick to export the result of a MySQL query as a CSV.</description>
+    </item>
+    
+  </channel>
+</rss>
