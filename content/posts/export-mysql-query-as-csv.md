@@ -49,6 +49,6 @@ s/\\\n/\n/g     MySQL escapes \n in the output, so replace them again
 s/\\\t/\t/g     Idem for \t
 ```
 
-A alternative way to go about would be to use MySQL's [`INTO
+An alternative way to go about would be to use MySQL's [`INTO
 OUTFILE`](https://stackoverflow.com/a/356605), but this requires specific
 permissions.
