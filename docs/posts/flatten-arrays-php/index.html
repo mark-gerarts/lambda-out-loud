@@ -80,7 +80,17 @@ you <em>do</em> care about the keys:</p>
 
     <span style="color:#007020;font-weight:bold">return</span> iterator_to_array(<span style="color:#bb60d5">$iterator</span>);
 }
-</code></pre></div><h2 id="flattening-a-two-dimensional-array">Flattening a two-dimensional array&nbsp;<a class="anchor" href="#flattening-a-two-dimensional-array"><svg
+</code></pre></div><p>As a side note, if you are only interested in all <strong>values with a specific
+key</strong> <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#bb60d5">$array</span> <span style="color:#666">=</span> [
+    [<span style="color:#4070a0">&#39;id&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#40a070">123</span>, <span style="color:#4070a0">&#39;name&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;aaa&#39;</span>, <span style="color:#4070a0">&#39;class&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;x&#39;</span>],
+    [<span style="color:#4070a0">&#39;id&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#40a070">124</span>, <span style="color:#4070a0">&#39;name&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;bbb&#39;</span>, <span style="color:#4070a0">&#39;class&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;x&#39;</span>],
+    [<span style="color:#4070a0">&#39;id&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#40a070">345</span>, <span style="color:#4070a0">&#39;name&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;ccc&#39;</span>, <span style="color:#4070a0">&#39;class&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;y&#39;</span>],
+];
+
+array_column(<span style="color:#bb60d5">$array</span>, <span style="color:#4070a0">&#39;id&#39;</span>);
+<span style="color:#60a0b0;font-style:italic">// [123, 124, 345]
+</span></code></pre></div><h2 id="flattening-a-two-dimensional-array">Flattening a two-dimensional array&nbsp;<a class="anchor" href="#flattening-a-two-dimensional-array"><svg
             width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M14.8284 12L16.2426 13.4142L19.071 10.5858C20.6331 9.02365 20.6331 6.49099 19.071 4.9289C17.509 3.3668 14.9763 3.3668 13.4142 4.9289L10.5858 7.75732L12 9.17154L14.8284 6.34311C15.6095 5.56206 16.8758 5.56206 17.6568 6.34311C18.4379 7.12416 18.4379 8.39049 17.6568 9.17154L14.8284 12Z"
@@ -194,7 +204,70 @@ flatten_array_preserve_keys(<span style="color:#bb60d5">$employees</span>);
 <span style="color:#60a0b0;font-style:italic">// [
 </span><span style="color:#60a0b0;font-style:italic">//     &#39;name&#39; =&gt; &#39;Charles Boyle&#39;
 </span><span style="color:#60a0b0;font-style:italic">// ]
-</span></code></pre></div>
+</span></code></pre></div><h2 id="extracting-values-with-a-specific-key">Extracting values with a specific key&nbsp;<a class="anchor" href="#extracting-values-with-a-specific-key"><svg
+            width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M14.8284 12L16.2426 13.4142L19.071 10.5858C20.6331 9.02365 20.6331 6.49099 19.071 4.9289C17.509 3.3668 14.9763 3.3668 13.4142 4.9289L10.5858 7.75732L12 9.17154L14.8284 6.34311C15.6095 5.56206 16.8758 5.56206 17.6568 6.34311C18.4379 7.12416 18.4379 8.39049 17.6568 9.17154L14.8284 12Z"
+              fill="currentColor" />
+            <path
+              d="M12 14.8285L13.4142 16.2427L10.5858 19.0711C9.02372 20.6332 6.49106 20.6332 4.92896 19.0711C3.36686 17.509 3.36686 14.9764 4.92896 13.4143L7.75739 10.5858L9.1716 12L6.34317 14.8285C5.56212 15.6095 5.56212 16.8758 6.34317 17.6569C7.12422 18.4379 8.39055 18.4379 9.1716 17.6569L12 14.8285Z"
+              fill="currentColor" />
+            <path
+              d="M14.8285 10.5857C15.219 10.1952 15.219 9.56199 14.8285 9.17147C14.4379 8.78094 13.8048 8.78094 13.4142 9.17147L9.1716 13.4141C8.78107 13.8046 8.78107 14.4378 9.1716 14.8283C9.56212 15.2188 10.1953 15.2188 10.5858 14.8283L14.8285 10.5857Z"
+              fill="currentColor" />
+          </svg></i></a> </h2>
+<p><a href="https://www.php.net/manual/en/function.array-column.php"><code>array_column</code></a> is
+especially useful to extract all values with a given key from an array:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#bb60d5">$array</span> <span style="color:#666">=</span> [
+    [<span style="color:#4070a0">&#39;id&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#40a070">123</span>, <span style="color:#4070a0">&#39;name&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;aaa&#39;</span>, <span style="color:#4070a0">&#39;class&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;x&#39;</span>],
+    [<span style="color:#4070a0">&#39;id&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#40a070">124</span>, <span style="color:#4070a0">&#39;name&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;bbb&#39;</span>, <span style="color:#4070a0">&#39;class&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;x&#39;</span>],
+    [<span style="color:#4070a0">&#39;id&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#40a070">345</span>, <span style="color:#4070a0">&#39;name&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;ccc&#39;</span>, <span style="color:#4070a0">&#39;class&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;y&#39;</span>],
+];
+
+array_column(<span style="color:#bb60d5">$array</span>, <span style="color:#4070a0">&#39;id&#39;</span>);
+<span style="color:#60a0b0;font-style:italic">// [123, 124, 345]
+</span></code></pre></div><p>The function accepts an optional third parameter that specifies which column
+to use as the index:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">array_column(<span style="color:#bb60d5">$array</span>, <span style="color:#4070a0">&#39;name&#39;</span>, <span style="color:#4070a0">&#39;id&#39;</span>);
+<span style="color:#60a0b0;font-style:italic">// [123 =&gt; &#39;aaa&#39;, 124 =&gt; &#39;bbb&#39;, 345 =&gt; &#39;ccc&#39;]
+</span></code></pre></div><p>It handles objects as well, as long as the properties are public:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#007020;font-weight:bold">class</span> <span style="color:#0e84b5;font-weight:bold">Person</span>
+{
+    <span style="color:#007020;font-weight:bold">public</span> <span style="color:#007020;font-weight:bold">function</span> __construct(<span style="color:#007020;font-weight:bold">public</span> int <span style="color:#bb60d5">$id</span>, <span style="color:#007020;font-weight:bold">public</span> string <span style="color:#bb60d5">$name</span>) {}
+}
+
+<span style="color:#bb60d5">$objects</span> <span style="color:#666">=</span> [
+    <span style="color:#007020;font-weight:bold">new</span> Person(<span style="color:#40a070">12</span>, <span style="color:#4070a0">&#39;John&#39;</span>),
+    <span style="color:#007020;font-weight:bold">new</span> Person(<span style="color:#40a070">34</span>, <span style="color:#4070a0">&#39;Jane&#39;</span>)
+];
+
+array_column(<span style="color:#bb60d5">$objects</span>, <span style="color:#4070a0">&#39;name&#39;</span>, <span style="color:#4070a0">&#39;id&#39;</span>);
+<span style="color:#60a0b0;font-style:italic">// [12 =&gt; &#39;John&#39;, 34 =&gt; &#39;Jane&#39;]
+</span></code></pre></div><p>While not useful in the context of flattening arrays, there&rsquo;s another neat trick
+you can do with <code>array_column</code>: by passing <code>null</code> as the second argument, the
+array will be reindexed based on the third parameter:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#bb60d5">$array</span> <span style="color:#666">=</span> [
+    [<span style="color:#4070a0">&#39;id&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#40a070">123</span>, <span style="color:#4070a0">&#39;name&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;aaa&#39;</span>, <span style="color:#4070a0">&#39;class&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;x&#39;</span>],
+    [<span style="color:#4070a0">&#39;id&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#40a070">124</span>, <span style="color:#4070a0">&#39;name&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;bbb&#39;</span>, <span style="color:#4070a0">&#39;class&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;x&#39;</span>],
+    [<span style="color:#4070a0">&#39;id&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#40a070">345</span>, <span style="color:#4070a0">&#39;name&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;ccc&#39;</span>, <span style="color:#4070a0">&#39;class&#39;</span> <span style="color:#666">=&gt;</span> <span style="color:#4070a0">&#39;y&#39;</span>],
+];
+
+array_column(<span style="color:#bb60d5">$array</span>, <span style="color:#007020;font-weight:bold">null</span>, <span style="color:#4070a0">&#39;id&#39;</span>);
+<span style="color:#60a0b0;font-style:italic">// [
+</span><span style="color:#60a0b0;font-style:italic">//    123 =&gt; [&#39;id&#39; =&gt; 123, &#39;name&#39; =&gt; &#39;aaa&#39;, &#39;class&#39; =&gt; &#39;x&#39;],
+</span><span style="color:#60a0b0;font-style:italic">//    124 =&gt; [&#39;id&#39; =&gt; 124, &#39;name&#39; =&gt; &#39;bbb&#39;, &#39;class&#39; =&gt; &#39;x&#39;],
+</span><span style="color:#60a0b0;font-style:italic">//    345 =&gt; [&#39;id&#39; =&gt; 345, &#39;name&#39; =&gt; &#39;ccc&#39;, &#39;class&#39; =&gt; &#39;y&#39;],
+</span><span style="color:#60a0b0;font-style:italic">// ]
+</span></code></pre></div><section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Credit goes to <a href="https://github.com/strayobject">@strayobject</a> for
+suggesting <code>array_column</code>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
     </section>
     <p class="meta">
       Tags:

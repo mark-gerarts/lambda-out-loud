@@ -53,6 +53,20 @@ function flatten_array_preserve_keys(array $array): array {
 }
 ```
 
+As a side note, if you are only interested in all **values with a specific
+key** [^1]:
+
+```php
+$array = [
+    ['id' => 123, 'name' => 'aaa', 'class' => 'x'],
+    ['id' => 124, 'name' => 'bbb', 'class' => 'x'],
+    ['id' => 345, 'name' => 'ccc', 'class' => 'y'],
+];
+
+array_column($array, 'id');
+// [123, 124, 345]
+```
+
 ## Flattening a two-dimensional array
 
 ```php
@@ -177,3 +191,66 @@ flatten_array_preserve_keys($employees);
 //     'name' => 'Charles Boyle'
 // ]
 ```
+
+## Extracting values with a specific key
+
+[`array_column`](https://www.php.net/manual/en/function.array-column.php) is
+especially useful to extract all values with a given key from an array:
+
+```php
+$array = [
+    ['id' => 123, 'name' => 'aaa', 'class' => 'x'],
+    ['id' => 124, 'name' => 'bbb', 'class' => 'x'],
+    ['id' => 345, 'name' => 'ccc', 'class' => 'y'],
+];
+
+array_column($array, 'id');
+// [123, 124, 345]
+```
+
+The function accepts an optional third parameter that specifies which column
+to use as the index:
+
+```php
+array_column($array, 'name', 'id');
+// [123 => 'aaa', 124 => 'bbb', 345 => 'ccc']
+```
+
+It handles objects as well, as long as the properties are public:
+
+```php
+class Person
+{
+    public function __construct(public int $id, public string $name) {}
+}
+
+$objects = [
+    new Person(12, 'John'),
+    new Person(34, 'Jane')
+];
+
+array_column($objects, 'name', 'id');
+// [12 => 'John', 34 => 'Jane']
+```
+
+While not useful in the context of flattening arrays, there's another neat trick
+you can do with `array_column`: by passing `null` as the second argument, the
+array will be reindexed based on the third parameter:
+
+```php
+$array = [
+    ['id' => 123, 'name' => 'aaa', 'class' => 'x'],
+    ['id' => 124, 'name' => 'bbb', 'class' => 'x'],
+    ['id' => 345, 'name' => 'ccc', 'class' => 'y'],
+];
+
+array_column($array, null, 'id');
+// [
+//    123 => ['id' => 123, 'name' => 'aaa', 'class' => 'x'],
+//    124 => ['id' => 124, 'name' => 'bbb', 'class' => 'x'],
+//    345 => ['id' => 345, 'name' => 'ccc', 'class' => 'y'],
+// ]
+```
+
+[^1]: Credit goes to [@strayobject](https://github.com/strayobject) for
+    suggesting `array_column`.
