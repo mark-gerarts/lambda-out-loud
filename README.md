@@ -2,10 +2,14 @@
 
 Source code for [https://www.lambda-out-loud.com](http://www.lambda-out-loud.com).
 
-## Building
+## Development
 
-The site has to be built to the `docs` folder because of the Github pages setup:
+Hugo development server with live reload:
 
 ```
-$ hugo -d docs
+hugo server
 ```
+
+## Deploy
+
+All changes are deployed automatically using a Github action.
