@@ -6,7 +6,12 @@
     {{ end }}
     <h1>{{ .Title }}</h1>
     <p class="meta">
-      <time >{{ .Date.Format (.Site.Params.dateFormatToUse | default "January 02, 2006") }}</time>
+      {{ $date := .Date.Format "January 02, 2006" }}
+      {{ $lastmod := .Lastmod.Format "January 02, 2006" }}
+      <time >{{ $date }}</time>
+      {{ if ne $lastmod $date }}
+      <time > - Last modified at {{ $lastmod }}</time>
+      {{ end }}
     </p>
     <section>
       {{ .Content | replaceRE "(<h[2-9] id=\"([^\"]+)\".+)(</h[1-9]+>)" `${1}&nbsp;<a class="anchor" href="#${2}"><svg

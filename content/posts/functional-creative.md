@@ -1,6 +1,7 @@
 ---
 title: "Functional creative coding"
 date: 2020-04-11T11:07:30+01:00
+lastmod: 2022-12-13
 summary: "Exploring creative coding options in functional languages."
 tags:
     - Creative coding
@@ -16,19 +17,22 @@ This time, however, I wanted to use creative coding as a way to learn and
 improve my knowledge of functional programming. There are a number of options
 out there:
 
-- **Haskell**'s most promising library for creative coding seems to be [gloss].
-  It is stable and maintained, and has a few examples to get you started.
-  Closely related is [Shine], which brings gloss to the browser.
-- **PureScript** has a [nice library][purescript-p5] that provides p5js
-  bindings. The author even published a [boilerplate
-  project][purescript-p5-starter] that includes hot reloading.
+- **Haskell**'s main library for creative coding seems to be [gloss]. It is
+  stable and maintained, and has a few examples to get you started. Closely
+  related is [Shine], which brings gloss to the browser.
+- **PureScript** has a [library][purescript-p5] that provides p5js bindings. The
+  author published a [boilerplate project][purescript-p5-starter] that includes
+  hot reloading.
 - Another nice sketching library is **Clojure**'s [Quil]. It's intuitive, has
   good documentation, and is pleasant to work with. Coding is interactive, with
   changes being compiled quickly.
 - For **Common Lisp** I can wholeheartedly recommend [trivial-gamekit]. It's
   technically a library to create 2D games, but it lends itself really well for
   creating sketches. You get an easy-to-use library combined with all the power
-  Lisp has to offer.
+  Lisp has to offer. Another Common Lisp alternative is
+  [Sketch](https://github.com/vydd/sketch).
+- **Racket** has the Processing-inspired package
+  [Sketching](https://github.com/soegaard/sketching/).
 - For a lightweight Haskell-like experience, there's **Elm**. [Elm-canvas]
   provides a nice wrapper around the HTML5 canvas, which is enough to get you
   started.
