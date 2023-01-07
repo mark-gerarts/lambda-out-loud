@@ -5,16 +5,24 @@
 <main role="main">
     <h1>{{ .Title }}</h1>
 
-    <ul>
-        {{ range .Data.Terms.Alphabetical }}
+    {{ if .Params.subtext }}
+    <p>{{ .Params.subtext }}</p>
+    {{ end }}
+
+    {{ range .Data.Terms.Alphabetical }}
+    <details open>
+        <summary>{{ .Page.Title }} ({{ .Count }})</summary>
+        <ul>
+            {{ range .Pages }}
             <li>
                 <a href="{{ .Page.Permalink }}">
                     {{ .Page.Title }}
                 </a>
-                ({{ .Count }})
             </li>
-        {{ end }}
-    </ul>
+            {{ end }}
+        </ul>
+    </details>
+    {{ end }}
 
     {{ .Content }}
 </main>
