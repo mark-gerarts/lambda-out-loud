@@ -1,6 +1,7 @@
 ---
 title: "Accessing private properties in PHP"
 date: 2018-06-09T19:41:36+02:00
+lastmod: 2023-05-19
 tags:
     - PHP
 description: 'Finding a way around property visibility'
@@ -159,7 +160,9 @@ function get_property(object $object, string $property) {
     $array = (array) $object;
     $propertyLength = strlen($property);
     foreach ($array as $key => $value) {
-        if (substr($key, -$propertyLength) === $property) {
+        $propertyNameParts = explode("\0", $key);
+        $propertyName = end($propertyNameParts);
+        if ($propertyName === $property) {
             return $value;
         }
     }
@@ -291,8 +294,6 @@ Properties are private for a reason! If you have a valid use case, go for
 reflection. Your code will be more readable and thus easier to maintain. Plus,
 its behaviour is well-defined and documented. The performance gain isn't worth
 sacrificing this for.
-
-
 
 [reflection-php]: https://secure.php.net/manual/en/book.reflection.php
 [reflection-property]: https://secure.php.net/manual/en/class.reflectionproperty.php
