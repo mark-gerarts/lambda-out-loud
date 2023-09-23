@@ -26,6 +26,12 @@ theme = "arabica"
         url = "/grimoire/"
         weight = -5
 
+    [[menu.main]]
+        identifier = "tags"
+        name = "Tags"
+        url = "/tags/"
+        weight = -5
+
 [markup]
   [markup.highlight]
     codeFences = true
