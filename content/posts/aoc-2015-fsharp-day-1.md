@@ -6,7 +6,7 @@ tags:
     - Fsharp
     - Advent of Code
 summary: >
-    Not Quite Lisp
+    Not Quite Lisp.
 ---
 
 [Day 1: Not Quite Lisp](https://adventofcode.com/2015/day/1).

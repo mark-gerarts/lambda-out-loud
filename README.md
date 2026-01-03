@@ -7,7 +7,7 @@ Source code for [https://www.lambda-out-loud.com](http://www.lambda-out-loud.com
 Hugo development server with live reload:
 
 ```
-hugo server
+hugo server -D
 ```
 
 ## Deploy
