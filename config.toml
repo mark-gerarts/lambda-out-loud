@@ -1,8 +1,10 @@
 baseURL = "https://www.lambda-out-loud.com/"
 languageCode = "en-us"
 title = "Lambda Out Loud"
-paginate = 5
 theme = "arabica"
+
+[paginator]
+  paginate = 5
 
 [taxonomies]
   category = "categories"

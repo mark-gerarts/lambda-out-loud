@@ -13,17 +13,21 @@
 }
 
 .post-item {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .post-item:first-of-type {
     margin-top: 2rem;
 }
 
+.post-item p {
+    margin: 4px;
+}
+
 .site-title {
     font-family: u000;
     font-weight: normal;
-	text-decoration: none;
+    text-decoration: none;
     color: inherit;
     font-size: 3rem;
 }
@@ -32,26 +36,38 @@
     color: inherit;
 }
 
-.site-title + p {
+.site-title+p {
     margin-top: 0;
 }
 
-h1 + .meta {
+h1+.meta {
     margin-top: -1.5rem;
     margin-bottom: 2.5rem;
 }
 
-h2 {
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-size: 2rem;
+    position: relative;
 }
 
 .anchor {
-    width: 24px;
+    width: 28px;
     opacity: 0;
     position: absolute;
+    top: 50%;
+    left: -28px;
+    transform: translateY(-50%);
 }
 
-h2:hover .anchor, h3:hover .anchor, h4:hover .anchor, h5:hover .anchor, h6:hover .anchor {
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
     opacity: 1;
 }
 
@@ -82,11 +98,11 @@ pre span {
     }
 
     pre {
-        background-color: var(--accent-bg)!important;
+        background-color: var(--accent-bg) !important;
     }
 
     /* Little hack to override low contrast colors in dark mode. */
     pre span[style^="color:#06287e"] {
-        color: var(--preformatted)!important;
+        color: var(--preformatted) !important;
     }
 }
