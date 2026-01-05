@@ -45,9 +45,10 @@
   {{ with $related }}
   <p class="meta">
     Related:
+    {{ $last_index := (sub (len .) 1) }}
     {{ range $i, $e := . }}
     <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    {{- if $i -}}, {{ end -}}
+    {{- if ne $i $last_index -}}, {{- end -}}
     {{ end }}
     </ul>
   </p>

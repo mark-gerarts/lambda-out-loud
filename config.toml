@@ -12,7 +12,7 @@ theme = "arabica"
   grimoire = "grimoire"
 
 [params]
-    description = "A blog about all things code"
+    description = "Lambda Out Loud"
     mainSections = ["posts", "creative-code"]
 
 [menu]
