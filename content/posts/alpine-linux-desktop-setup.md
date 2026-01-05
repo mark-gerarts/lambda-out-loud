@@ -18,7 +18,11 @@ This post documents how I set up Alpine with the Xfce desktop environment. Per
 definition, setting up a personal PC is very opinionated, but hopefully this
 post can be a starting point for others who want to do the same.
 
-![Alpine Linux running several applications on Xfce](/static/img/alpine-desktop.png)
+{{< figure
+  src="/static/img/alpine-desktop.png"
+  caption="Alpine Linux running several applications on Xfce."
+  alt="Xfce desktop primarily showing a terminal window running fastfetch."
+>}}
 
 ## Why Alpine
 
