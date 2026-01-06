@@ -9,13 +9,6 @@ career has seen some changes: I moved from software development to data
 engineering and ended up as a developer/bioinformatician at a local hospital.
 Now I am starting a PhD in Computer Science at Hasselt University.
 
-I love all things related to computer science, coding, Linux, and OSS --- hence
-this blog. I also enjoy the occasional video game, which means I spend more time
-behind a screen than I'd like. When I get the chance, you can find me outdoors:
-running (I'm casually building up to a marathon), cycling (to keep up for my
-yearly bikepacking trip), and going to local concerts. I also enjoy noodling on
-my guitar and watching movies (80's horror movies are my guilty pleasure).
-
 This blog was initially a place for me to write down all things related to code
 --- tutorials, interesting snippets, Linux stuff, and so on. As I have learned
 to appreciate writing as a way to shape and order my thoughts, I will probably
