@@ -7,8 +7,22 @@ grimoire:
 tags:
     - Linux
     - Bash
-draft: true
 ---
 
-TODO: quick post about typo aliases, e.g. gti for git. Start with basic example,
-then dump the entire list.
+```
+bash: gti: command not found
+```
+
+Does this error message look familiar? I often type faster than my skills allow,
+resulting in a lot of typos. As a remedy, I maintain a long list of "aliases of
+shame":
+
+```bash
+alias sl="ls"
+alias it="git"
+alias gti="git"
+alias gut="git"
+alias got="git"
+alias code.="code ."
+# ...and so on
+```
